@@ -31,6 +31,54 @@ const doors = {
             [37, 8],
             [38, 8]
         ]
+    },
+    "door-002": {
+        open: false,
+        locked: false,
+        tiles: [
+            [28, 15],
+            [29, 15]
+        ]
+    },
+    "door-003": {
+        open: false,
+        locked: false,
+        tiles: [
+            [24, 11],
+            [24, 12]
+        ]
+    },
+    "door-004": {
+        open: false,
+        locked: false,
+        tiles: [
+            [33, 20],
+            [34, 20]
+        ]
+    },
+    "door-005": {
+        open: false,
+        locked: false,
+        tiles: [
+            [19, 20],
+            [20, 20]
+        ]
+    },
+    "door-006": {
+        open: false,
+        locked: false,
+        tiles: [
+            [37, 28],
+            [38, 28]
+        ]
+    },
+    "door-007": {
+        open: false,
+        locked: false,
+        tiles: [
+            [15, 17],
+            [15, 18]
+        ]
     }
 }
 
