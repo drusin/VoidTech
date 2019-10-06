@@ -1,5 +1,3 @@
-import { getTiledIdFromPhaserTileIndex } from '../dynamic-tilemap-layer-helper.js';
-
 const START_X = 550;
 const START_Y = 180;
 export const PLAYER_TILESET_KEY = 'chara';
@@ -46,8 +44,7 @@ export default class Player {
         const walkingOnMetalSound = this.scene.sounds.walkingMetal1;
 
         const tileStandingOn = this.scene.walkableLayer.getTileAtWorldXY(this.sprite.x, this.sprite.y);
-        const tileCurrentlyStandingOnId = getTiledIdFromPhaserTileIndex(this.scene.walkableLayer, tileStandingOn.index);
-        const currentFloorType = this._getFloorType(tileCurrentlyStandingOnId);
+        const currentFloorType = tileStandingOn.properties['floorType'];
 
         if (!this._isMoving(this.sprite.body.velocity)) {
             walkingOnWoodSound.stop();
@@ -75,17 +72,6 @@ export default class Player {
 
     _isMoving(velocity) {
         return velocity.x != 0 || velocity.y != 0;
-    }
-
-    _getFloorType(tileId) {
-        const TILED_TILE_ID_METAL_FLOOR = 39;
-        const TILED_TILE_ID_WOOD_FLOOR = 38;
-        if (tileId === TILED_TILE_ID_METAL_FLOOR) {
-            return 'metal';
-        }
-        else {
-            return 'wood';
-        }
     }
 
     update() {

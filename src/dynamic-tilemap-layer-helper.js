@@ -7,7 +7,7 @@ export function getPhaserTileIndexFromTiledGid(layer, gid) {
     return tileIndicesOfLayer[gid];
 }
 
-export function getTiledIdFromPhaserTileIndex(layer, index) {
-    const tileIndicesOfLayer = Object.keys(layer.gidMap).map(index => parseInt(index));
-    return tileIndicesOfLayer.indexOf(index);
-}
+// export function getTiledIdFromPhaserTileIndex(layer, index) {
+    // const tileIndicesOfLayer = Object.keys(layer.gidMap).map(index => parseInt(index));
+    // return tileIndicesOfLayer.indexOf(index);
+// }
