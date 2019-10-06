@@ -132,4 +132,8 @@ export default {
 		"text": "Something strange is going on. Written on the VHS tape is Gate Keepers: Dave05061991.<br> Gate Keepers was the user name written down on the sticky note.",
 		"speaker": "dave"
 		},
+	"speech-door-001-locked": {
+		"text": "TODO: This door seems to be locked because on the other side is no oxigen.",
+		"speaker": "dave"
+	}
 }

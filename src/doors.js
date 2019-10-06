@@ -1,4 +1,5 @@
 import stateMachine from './stateMachine.js';
+import dialog from './dialog/dialog.js';
 import { getPhaserTileIndexFromTiledGid } from './dynamic-tilemap-layer-helper.js';
 
 // I tried to remove these hardcoded Tile Ids, but failed.
@@ -26,11 +27,13 @@ function setToClosedDoorTile(x, y) {
 const doors = {
     "door-001": {
         open: false,
-        locked: false, // so far unused
         tiles: [
             [37, 8],
             [38, 8]
-        ]
+        ],
+        locked: true,
+        lockedDialog: "speech-door-001-locked", // Dialog that pops up if the door is locked
+        alreadySeenLockedDialog: false // Prevents showing the dialog over and over again while still standing on the trigger tile. Will be reset after leaving the door-trigger
     },
     "door-002": {
         open: false,
@@ -42,7 +45,7 @@ const doors = {
     },
     "door-003": {
         open: false,
-        locked: false,
+        locked: true,
         tiles: [
             [24, 11],
             [24, 12]
@@ -91,6 +94,13 @@ export function ensureDoorOpen(identifier) {
     if (door.open) {
         return;
     }
+    if (door.locked) {
+        if (door.lockedDialog && !door.alreadySeenLockedDialog) {
+            dialog.show(door.lockedDialog);
+            door.alreadySeenLockedDialog = true;
+        }
+        return;
+    }
 
     door.tiles.forEach((tile) => setToOpenDoorTile(tile[0], tile[1]));
     playSoundEffect();
@@ -104,5 +114,6 @@ export function ensureAllDoorsClosed() {
             playSoundEffect();
             state.open = false;
         }
+        state.alreadySeenLockedDialog = false;
     }
 }
