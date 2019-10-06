@@ -82,6 +82,10 @@ const doors = {
     }
 }
 
+function playSoundEffect() {
+    stateMachine.player.scene.sounds.doorSwoosh1.play({volume: 0.1});
+}
+
 export function ensureDoorOpen(identifier) {
     const door = doors[identifier];
     if (door.open) {
@@ -89,7 +93,7 @@ export function ensureDoorOpen(identifier) {
     }
 
     door.tiles.forEach((tile) => setToOpenDoorTile(tile[0], tile[1]));
-    stateMachine.player.scene.sounds.doorSwoosh1.play();
+    playSoundEffect();
     door.open = true;
 }
 
@@ -97,7 +101,7 @@ export function ensureAllDoorsClosed() {
     for (let [identifier, state] of Object.entries(doors)) {
         if (state.open) {
             state.tiles.forEach((tile) => setToClosedDoorTile(tile[0], tile[1]));
-            stateMachine.player.scene.sounds.doorSwoosh1.play();
+            playSoundEffect();
             state.open = false;
         }
     }
