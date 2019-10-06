@@ -114,7 +114,7 @@ export default class GameScene extends Scene {
 		this.doorLayer.setCollisionByProperty({ collision: true });
 		this.animatedLayer = map.createDynamicLayer('animated', animatedTileset, 0, 0);
 		this.animatedLayer.setCollisionBetween(1, 999);
-		this.animatedLayer = map.createDynamicLayer('lamps', lightsTileset, 0, 0);
+		this.lampLayer = map.createDynamicLayer('lamps', lightsTileset, 0, 0);
 
         this.sys.animatedTiles.init(map);
 
