@@ -16,6 +16,7 @@ import walkingWood1 from './assets/sounds/Okt. 06, 508575-steps-wood.ogg';
 import walkingWood2 from './assets/sounds/Okt. 06, 022498-walking-wood.ogg';
 import walkingWood3 from './assets/sounds/Okt. 06, 969136-walking-wood-alternative.ogg';
 import walkingMetal1 from './assets/sounds/Okt. 06, 469754-walking-metal.ogg';
+import doorSwoosh from './assets/sounds/Okt. 06, 259500-door-shush.ogg';
 
 import { PLAYER_TILESET_KEY } from './entities/player.js';
 import Player from './entities/player.js';
@@ -68,6 +69,7 @@ export default class GameScene extends Scene {
 		this.load.audio('walking-wood-2', walkingWood2);
 		this.load.audio('walking-wood-3', walkingWood3);
 		this.load.audio('walking-metal-1', walkingMetal1);
+		this.load.audio('door-swoosh-1', doorSwoosh);
 	}
 
 	initializeObjects(tilemap) {
@@ -162,6 +164,7 @@ export default class GameScene extends Scene {
 		this.sounds.walkingWood2 = this.sound.add('walking-wood-2');
 		this.sounds.walkingWood3 = this.sound.add('walking-wood-3');
 		this.sounds.walkingMetal1 = this.sound.add('walking-metal-1');
+		this.sounds.doorSwoosh1 = this.sound.add('door-swoosh-1');
 
 		dialog.show('speech-awakening');
 	}

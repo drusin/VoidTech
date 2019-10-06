@@ -10,13 +10,13 @@ import { getPhaserTileIndexFromTiledGid } from './dynamic-tilemap-layer-helper.j
 const TILED_TILE_ID_DOOR_CLOSED = 0;
 const TILED_TILE_ID_DOOR_OPENED = 1;
 
-function openDoor(x, y) {
+function setToOpenDoorTile(x, y) {
     const doorLayer = stateMachine.player.scene.doorLayer;
     const tileIndexDoorOpened = getPhaserTileIndexFromTiledGid(doorLayer, TILED_TILE_ID_DOOR_OPENED);
     const tile = doorLayer.putTileAt(tileIndexDoorOpened, x, y);
     tile.setCollision(false);
 }
-function closeDoor(x, y) {
+function setToClosedDoorTile(x, y) {
     const doorLayer = stateMachine.player.scene.doorLayer;
     const tileIndexDoorClosed = getPhaserTileIndexFromTiledGid(doorLayer, TILED_TILE_ID_DOOR_CLOSED);
     const tile = doorLayer.putTileAt(tileIndexDoorClosed, x, y);
@@ -39,14 +39,17 @@ export function ensureDoorOpen(identifier) {
     if (door.open) {
         return;
     }
-    door.tiles.forEach((tile) => openDoor(tile[0], tile[1]));
+
+    door.tiles.forEach((tile) => setToOpenDoorTile(tile[0], tile[1]));
+    stateMachine.player.scene.sounds.doorSwoosh1.play();
     door.open = true;
 }
 
 export function ensureAllDoorsClosed() {
     for (let [identifier, state] of Object.entries(doors)) {
         if (state.open) {
-            state.tiles.forEach((tile) => closeDoor(tile[0], tile[1]));
+            state.tiles.forEach((tile) => setToClosedDoorTile(tile[0], tile[1]));
+            stateMachine.player.scene.sounds.doorSwoosh1.play();
             state.open = false;
         }
     }
