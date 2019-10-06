@@ -126,7 +126,7 @@ export default class GameScene extends Scene {
 		const wallLayer = map.createStaticLayer('walls', tileset, 0, 0);
 		wallLayer.setCollisionBetween(1, 999);
 		this.doorLayer = map.createDynamicLayer('doors', doorTileset, 0, 0);
-		this.doorLayer.setCollisionByProperty({ collision: true });
+		this.doorLayer.setCollisionByProperty({ closed: true });
 		this.animatedLayer = map.createDynamicLayer('animated', animatedTileset, 0, 0);
 		this.animatedLayer.setCollisionBetween(1, 999);
 		this.lampLayer = map.createDynamicLayer('lamps', lightsTileset, 0, 0);
