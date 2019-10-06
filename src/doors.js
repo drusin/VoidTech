@@ -1,6 +1,12 @@
 import stateMachine from './stateMachine.js';
 import { getPhaserTileIndexFromTiledGid } from './dynamic-tilemap-layer-helper.js';
 
+// I tried to remove these hardcoded Tile Ids, but failed.
+// Problem is that it was not trivial for me to get a specific TileObject 
+// based on a specific property (eg open=true) from the tilesetlayer.
+// 
+// Anyway this works for now, and since the 'doors' layer only has these 
+// two tiles, I hope there won't be a problem in the future.
 const TILED_TILE_ID_DOOR_CLOSED = 0;
 const TILED_TILE_ID_DOOR_OPENED = 1;
 
