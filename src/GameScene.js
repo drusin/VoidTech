@@ -130,24 +130,20 @@ export default class GameScene extends Scene {
 		dialog.init(this.Dialog, this, this.player);
 		stateMachine.init(this.player);
 		this.cameras.main.startFollow(this.player.sprite);
-		const spotlight = this.make.sprite({
+		const lightMask = this.make.sprite({
 			key: 'lightmap',
 			x: 380,
 			y: 220,
 			add: false
 		});
 
-		spotlight.update = () => {
-			spotlight.x = Math.round(32 + this.game.config.width - this.cameras.main.scrollX);
-			spotlight.y = Math.round(96 + this.game.config.height - this.cameras.main.scrollY);
+		lightMask.update = () => {
+			lightMask.x = Math.round(32 + this.game.config.width - this.cameras.main.scrollX);
+			lightMask.y = Math.round(96 + this.game.config.height - this.cameras.main.scrollY);
 		}
+		this.lightMask = lightMask;
 
-		console.log(this.cameras.main);
-
-		this.spotlight = spotlight;
-
-		console.log(spotlight);
-		this.cameras.main.setMask(new Phaser.Display.Masks.BitmapMask(this, spotlight));
+		// this.cameras.main.setMask(new Phaser.Display.Masks.BitmapMask(this, lightMask));
 
 		this.sounds.lightSwitch = this.sound.add('light-switch-1');
 		this.sounds.lightSwitchAlternative = this.sound.add('light-switch-2');
@@ -155,11 +151,13 @@ export default class GameScene extends Scene {
 		this.sounds.walkingWood2 = this.sound.add('walking-wood-2');
 		this.sounds.walkingWood3 = this.sound.add('walking-wood-3');
 		this.sounds.walkingMetal1 = this.sound.add('walking-metal-1');
+
+		dialog.show('speech-awakening');
 	}
 
 	update(time, delta) {
 		stateMachine.update();
 		this.player.update();
-		this.spotlight.update();
+		this.lightMask.update();
 	}
 }
