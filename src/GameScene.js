@@ -15,6 +15,7 @@ import lightSwitchSoundAlternative from './assets/sounds/Okt. 06, 830873-light-s
 import walkingWood1 from './assets/sounds/Okt. 06, 508575-steps-wood.ogg';
 import walkingWood2 from './assets/sounds/Okt. 06, 022498-walking-wood.ogg';
 import walkingWood3 from './assets/sounds/Okt. 06, 969136-walking-wood-alternative.ogg';
+import walkingMetal1 from './assets/sounds/Okt. 06, 469754-walking-metal.ogg';
 
 import { PLAYER_TILESET_KEY } from './entities/player.js';
 import Player from './entities/player.js';
@@ -64,8 +65,9 @@ export default class GameScene extends Scene {
 		this.load.audio('light-switch-1', lightSwitchSound);
 		this.load.audio('light-switch-2', lightSwitchSoundAlternative);
 		this.load.audio('walking-wood-1', walkingWood1);
-		this.load.audio('walking-wood-3', walkingWood2);
-		this.load.audio('walking-wood-2', walkingWood3);
+		this.load.audio('walking-wood-2', walkingWood2);
+		this.load.audio('walking-wood-3', walkingWood3);
+		this.load.audio('walking-metal-1', walkingMetal1);
 	}
 
 	initializeObjects(tilemap) {
@@ -107,7 +109,7 @@ export default class GameScene extends Scene {
 		const animatedTileset = map.addTilesetImage('Assets', 'assets');
 		const lightsTileset = map.addTilesetImage('Lights', 'lights');
 		const doorTileset = map.addTilesetImage('door');
-		const walkableLayer = map.createStaticLayer('floor', tileset, 0, 0);
+		this.walkableLayer = map.createStaticLayer('floor', tileset, 0, 0);
 		const wallLayer = map.createStaticLayer('walls', tileset, 0, 0);
 		wallLayer.setCollisionBetween(1, 999);
 		this.doorLayer = map.createDynamicLayer('doors', doorTileset, 0, 0);
@@ -152,6 +154,7 @@ export default class GameScene extends Scene {
 		this.sounds.walkingWood1 = this.sound.add('walking-wood-1');
 		this.sounds.walkingWood2 = this.sound.add('walking-wood-2');
 		this.sounds.walkingWood3 = this.sound.add('walking-wood-3');
+		this.sounds.walkingMetal1 = this.sound.add('walking-metal-1');
 	}
 
 	update(time, delta) {

@@ -47,12 +47,7 @@ class StateMachine {
         }
     }
 
-    _isMoving(velocity) {
-        return velocity.x != 0 || velocity.y != 0;
-    }
-
     updateMovement() {
-        const wasMovingBeforeUpdate = this._isMoving(this.player.sprite.body.velocity);
         const { left, right, up, down } = this.player.cursorkeys;
         if (!(left.isDown || right.isDown)) {
             this.player.sprite.setVelocityX(0);
@@ -68,16 +63,7 @@ class StateMachine {
             this.player.sprite.setVelocityY(up.isDown ? -constants.speed : constants.speed);
         }
 
-        const isMovingAfterUpdate = this._isMoving(this.player.sprite.body.velocity);
-        if (!wasMovingBeforeUpdate && isMovingAfterUpdate) {
-            // start walking
-            this.player.scene.sounds.walkingWood2.play({loop: true});
-        }
-        else if (wasMovingBeforeUpdate && !isMovingAfterUpdate) {
-            // stop walking
-            this.player.scene.sounds.walkingWood2.stop();
-        }
-            
+        this.player._updateWalkingSound();
         this._correctDiagonalMovementSpeed();
     }
 

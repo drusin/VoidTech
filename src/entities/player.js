@@ -1,9 +1,8 @@
+import { getTiledIdFromPhaserTileIndex } from '../dynamic-tilemap-layer-helper.js';
+
 const START_X = 550;
 const START_Y = 180;
-const SPEED = 40;
 export const PLAYER_TILESET_KEY = 'chara';
-import Phaser from 'phaser';
-import dialog from '../dialog/dialog.js';
 
 export default class Player {
 	constructor(scene) {
@@ -30,36 +29,6 @@ export default class Player {
         });
     }
 
-    // _updateMovement() {
-    //     const {left, right, up, down, space} = this.cursorkeys;
-
-    //     if (!(left.isDown || right.isDown)) {
-    //         this.sprite.setVelocityX(0);
-    //     }
-    //     else {
-    //         this.sprite.setVelocityX(left.isDown ? -SPEED : SPEED);
-    //     }
-
-    //     if (!(up.isDown || down.isDown)) {
-    //         this.sprite.setVelocityY(0);
-    //     }
-    //     else {
-    //         this.sprite.setVelocityY(up.isDown ? -SPEED : SPEED);
-    //     }
-
-    //     if (Phaser.Input.Keyboard.JustDown(space)) {
-    //         if (dialog.active) {
-    //             dialog.hide();
-    //         }
-    //         else {
-    //             this.scene.physics.overlap(this.sprite, this.scene.objects, (left, right) => {
-    //                 const trigger = left === this.sprite ? right : left;
-    //                 dialog.show(trigger.getData('action'));
-    //             });
-    //         }
-    //     }
-    // }
-
     _updateAnimation() {
         if (this.sprite.body.velocity.x != 0 || this.sprite.body.velocity.y != 0) {
             this.sprite.anims.play('walking', true);
@@ -69,6 +38,53 @@ export default class Player {
         }
         else {
             this.sprite.anims.play('standing', true);
+        }
+    }
+
+    _updateWalkingSound() {
+        const walkingOnWoodSound = this.scene.sounds.walkingWood2;
+        const walkingOnMetalSound = this.scene.sounds.walkingMetal1;
+
+        const tileStandingOn = this.scene.walkableLayer.getTileAtWorldXY(this.sprite.x, this.sprite.y);
+        const tileCurrentlyStandingOnId = getTiledIdFromPhaserTileIndex(this.scene.walkableLayer, tileStandingOn.index);
+        const currentFloorType = this._getFloorType(tileCurrentlyStandingOnId);
+
+        if (!this._isMoving(this.sprite.body.velocity)) {
+            walkingOnWoodSound.stop();
+            walkingOnMetalSound.stop();
+        }
+        else {
+            if (currentFloorType === 'metal') {
+                if (walkingOnWoodSound.isPlaying) {
+                    walkingOnWoodSound.stop();
+                }
+                if (!walkingOnMetalSound.isPlaying) {
+                    walkingOnMetalSound.play({loop: false});
+                }
+            }
+            else {
+                if (walkingOnMetalSound.isPlaying) {
+                    walkingOnMetalSound.stop();
+                }
+                if (!walkingOnWoodSound.isPlaying) {
+                    walkingOnWoodSound.play({loop: false});
+                }
+            }
+        }
+    }
+
+    _isMoving(velocity) {
+        return velocity.x != 0 || velocity.y != 0;
+    }
+
+    _getFloorType(tileId) {
+        const TILED_TILE_ID_METAL_FLOOR = 39;
+        const TILED_TILE_ID_WOOD_FLOOR = 38;
+        if (tileId === TILED_TILE_ID_METAL_FLOOR) {
+            return 'metal';
+        }
+        else {
+            return 'wood';
         }
     }
 
