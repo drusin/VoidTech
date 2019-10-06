@@ -4,22 +4,44 @@ import { getPhaserTileIndexFromTiledGid } from './dynamic-tilemap-layer-helper.j
 const TILED_TILE_ID_DOOR_CLOSED = 0;
 const TILED_TILE_ID_DOOR_OPENED = 1;
 
-export function toggleDoor(x, y) {
+function openDoor(x, y) {
     const doorLayer = stateMachine.player.scene.doorLayer;
-
-    const tileIndexDoorClosed = getPhaserTileIndexFromTiledGid(doorLayer, TILED_TILE_ID_DOOR_CLOSED);
     const tileIndexDoorOpened = getPhaserTileIndexFromTiledGid(doorLayer, TILED_TILE_ID_DOOR_OPENED);
+    const tile = doorLayer.putTileAt(tileIndexDoorOpened, x, y);
+    tile.setCollision(false);
+}
+function closeDoor(x, y) {
+    const doorLayer = stateMachine.player.scene.doorLayer;
+    const tileIndexDoorClosed = getPhaserTileIndexFromTiledGid(doorLayer, TILED_TILE_ID_DOOR_CLOSED);
+    const tile = doorLayer.putTileAt(tileIndexDoorClosed, x, y);
+    tile.setCollision(true);
+}
 
-    const doorTile = doorLayer.getTileAt(x,y);
-    if (doorTile.index === tileIndexDoorOpened) {
-        const tile = doorLayer.putTileAt(tileIndexDoorClosed, x, y);
-        tile.setCollision(true);
+const doors = {
+    "door-001": {
+        open: false,
+        locked: false, // so far unused
+        tiles: [
+            [37, 8],
+            [38, 8]
+        ]
     }
-    else if (doorTile.index === tileIndexDoorClosed) {
-        const tile = doorLayer.putTileAt(tileIndexDoorOpened, x, y);
-        tile.setCollision(false);
+}
+
+export function ensureDoorOpen(identifier) {
+    const door = doors[identifier];
+    if (door.open) {
+        return;
     }
-    else {
-        console.warn("Tried to use non-door tile as a door.")
+    door.tiles.forEach((tile) => openDoor(tile[0], tile[1]));
+    door.open = true;
+}
+
+export function ensureAllDoorsClosed() {
+    for (let [identifier, state] of Object.entries(doors)) {
+        if (state.open) {
+            state.tiles.forEach((tile) => closeDoor(tile[0], tile[1]));
+            state.open = false;
+        }
     }
-};
+}

@@ -72,24 +72,35 @@ export default class GameScene extends Scene {
 
 	initializeObjects(tilemap) {
 		this.speechTriggers = this.physics.add.group();
+		this.doorTriggers = this.physics.add.group();
 		this.levers = this.physics.add.group();
 
 		tilemap.getObjectLayer('objects').objects.forEach(obj => {
 			const commonSpritePostProcessing = (sprite) => {
 				sprite.setDisplaySize(obj.width, obj.height);
 				sprite.setOrigin(0, 0);
+				sprite.name = obj.name;
 				// copy custom properties
-				obj.properties.forEach(prop => {
-					sprite.setData(prop.name, prop.value);
-				});
+				if (obj.properties) {
+					obj.properties.forEach(prop => {
+						sprite.setData(prop.name, prop.value);
+					});
+				}
 			}
-			if (obj.name === "trigger") {
+			
+			if (obj.type === "door-trigger") {
+				const sprite = this.physics.add.sprite(obj.x, obj.y, null);
+				commonSpritePostProcessing(sprite);
+				sprite.depth = -10;
+				this.doorTriggers.add(sprite);
+			}
+			else if (obj.type === "speech-trigger") {
 				const sprite = this.physics.add.sprite(obj.x, obj.y, null);
 				commonSpritePostProcessing(sprite);
 				sprite.depth = -10;
 				this.speechTriggers.add(sprite);
 			}
-			else if (obj.name === "lever") {
+			else if (obj.type === "lever") {
 				// a freaking 8 year old bug in tiled drove me mad…
 				// https://github.com/bjorn/tiled/issues/91
 				const posY = obj.gid ? obj.y - obj.height : obj.y;

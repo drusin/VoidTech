@@ -1,6 +1,7 @@
 import dialog from './dialog/dialog.js';
 import constants from './constants.js';
 import levers from './levers.js';
+import { ensureDoorOpen, ensureAllDoorsClosed } from './doors.js';
 
 const STATES = {
     normal: 'normal',
@@ -44,6 +45,14 @@ class StateMachine {
                 levers[trigger.getData('action')](trigger);
             });
             this.player.scene.sounds.lightSwitch.play();
+        }
+        
+        const overlapWithDoorTrigger = this.player.scene.physics.overlap(this.player.sprite, this.player.scene.doorTriggers, (left, right) => {
+            const trigger = left === this.player.sprite ? right : left;
+            ensureDoorOpen(trigger.name);
+        });
+        if (!overlapWithDoorTrigger) {
+            ensureAllDoorsClosed();
         }
     }
 
