@@ -17,6 +17,9 @@ import walkingWood2 from './assets/sounds/Okt. 06, 022498-walking-wood.ogg';
 import walkingWood3 from './assets/sounds/Okt. 06, 969136-walking-wood-alternative.ogg';
 import walkingMetal1 from './assets/sounds/Okt. 06, 469754-walking-metal.ogg';
 import doorSwoosh from './assets/sounds/Okt. 06, 259500-door-shush.ogg';
+import oxygen from './assets/sounds/Okt. 06, 581718-oxigen.ogg';
+import generatorNoise1 from './assets/sounds/Okt. 07, 830680-generator-noise.ogg';
+import generatorNoise2 from './assets/sounds/Okt. 07, 128891-generator-noise-alternative.ogg';
 
 import { PLAYER_TILESET_KEY } from './entities/player.js';
 import Player from './entities/player.js';
@@ -70,35 +73,39 @@ export default class GameScene extends Scene {
 		this.load.audio('walking-wood-3', walkingWood3);
 		this.load.audio('walking-metal-1', walkingMetal1);
 		this.load.audio('door-swoosh-1', doorSwoosh);
+		this.load.audio('oxygen', oxygen);
+		this.load.audio('generator-noise-1', generatorNoise1);
+		this.load.audio('generator-noise-2', generatorNoise2);
 	}
 
 	initializeObjects(tilemap) {
 		this.speechTriggers = this.physics.add.group();
 		this.doorTriggers = this.physics.add.group();
 		this.levers = this.physics.add.group();
+		this.audioAreas = this.physics.add.group();
+
+		const commonSpritePostProcessing = (sprite, obj) => {
+			sprite.setDisplaySize(obj.width, obj.height);
+			sprite.setOrigin(0, 0);
+			sprite.name = obj.name;
+			// copy custom properties
+			if (obj.properties) {
+				obj.properties.forEach(prop => {
+					sprite.setData(prop.name, prop.value);
+				});
+			}
+		}
 
 		tilemap.getObjectLayer('objects').objects.forEach(obj => {
-			const commonSpritePostProcessing = (sprite) => {
-				sprite.setDisplaySize(obj.width, obj.height);
-				sprite.setOrigin(0, 0);
-				sprite.name = obj.name;
-				// copy custom properties
-				if (obj.properties) {
-					obj.properties.forEach(prop => {
-						sprite.setData(prop.name, prop.value);
-					});
-				}
-			}
-			
 			if (obj.type === "door-trigger") {
 				const sprite = this.physics.add.sprite(obj.x, obj.y, null);
-				commonSpritePostProcessing(sprite);
+				commonSpritePostProcessing(sprite, obj);
 				sprite.depth = -10;
 				this.doorTriggers.add(sprite);
 			}
 			else if (obj.type === "speech-trigger") {
 				const sprite = this.physics.add.sprite(obj.x, obj.y, null);
-				commonSpritePostProcessing(sprite);
+				commonSpritePostProcessing(sprite, obj);
 				sprite.depth = -10;
 				this.speechTriggers.add(sprite);
 			}
@@ -107,8 +114,17 @@ export default class GameScene extends Scene {
 				// https://github.com/bjorn/tiled/issues/91
 				const posY = obj.gid ? obj.y - obj.height : obj.y;
 				const sprite = this.physics.add.sprite(obj.x, posY, 'lever');
-				commonSpritePostProcessing(sprite);
+				commonSpritePostProcessing(sprite, obj);
 				this.levers.add(sprite);
+			}
+		});
+		
+		tilemap.getObjectLayer('soundAreas').objects.forEach(obj => {
+			if (obj.type === "audio-area") {
+				const sprite = this.physics.add.sprite(obj.x, obj.y, null);
+				commonSpritePostProcessing(sprite, obj);
+				sprite.depth = -10;
+				this.audioAreas.add(sprite);
 			}
 		});
 	}
@@ -165,6 +181,8 @@ export default class GameScene extends Scene {
 		this.sounds.walkingWood3 = this.sound.add('walking-wood-3');
 		this.sounds.walkingMetal1 = this.sound.add('walking-metal-1');
 		this.sounds.doorSwoosh1 = this.sound.add('door-swoosh-1');
+		this.sounds.oxygen = this.sound.add('oxygen');
+		this.sounds.generatorNoise = this.sound.add('generator-noise-2');
 
 		dialog.show('speech-awakening');
 	}

@@ -27,9 +27,30 @@ class StateMachine {
             case STATES.normal:
                 this.updateMovement();
                 this.handleInteractions();
+                this.updateAreaSounds();
                 break;
             case STATES.dialog:
                 this.updateDialog();
+        }
+    }
+
+    updateAreaSounds() {
+        const playerInArea = this.player.scene.physics.overlap(this.player.sprite, this.player.scene.audioAreas, (left, right) => {
+            const trigger = left === this.player.sprite ? right : left;
+            if (trigger.name === 'generator-room') {
+                if (!this.player.scene.sounds.generatorNoise.isPlaying) {
+                    this.player.scene.sounds.generatorNoise.play();
+                }
+            }
+            else if (trigger.name === 'pipes-room') {
+                if (!this.player.scene.sounds.oxygen.isPlaying) {
+                    this.player.scene.sounds.oxygen.play();
+                }
+            }
+        });
+        if (!playerInArea) {
+            this.player.scene.sounds.generatorNoise.stop();
+            this.player.scene.sounds.oxygen.stop();
         }
     }
 
@@ -46,7 +67,7 @@ class StateMachine {
             });
             this.player.scene.sounds.lightSwitch.play();
         }
-        
+
         const overlapWithDoorTrigger = this.player.scene.physics.overlap(this.player.sprite, this.player.scene.doorTriggers, (left, right) => {
             const trigger = left === this.player.sprite ? right : left;
             ensureDoorOpen(trigger.name);
