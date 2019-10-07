@@ -83,40 +83,31 @@ class StateMachine {
     }
 
     updateMovement() {
+        const speed = this.player.wearsSpaceSuit ? constants.speed * constants.spaceSuiteMovementMultiplier : constants.speed;
         const { left, right, up, down } = this.player.cursorkeys;
         if (!(left.isDown || right.isDown)) {
             this.player.sprite.setVelocityX(0);
         }
         else {
-            this.player.sprite.setVelocityX(left.isDown ? -constants.speed : constants.speed);
+            this.player.sprite.setVelocityX(left.isDown ? -speed : speed);
         }
 
         if (!(up.isDown || down.isDown)) {
             this.player.sprite.setVelocityY(0);
         }
         else {
-            this.player.sprite.setVelocityY(up.isDown ? -constants.speed : constants.speed);
+            this.player.sprite.setVelocityY(up.isDown ? -speed : speed);
         }
 
         this.player._updateWalkingSound();
-        if (this.player.wearsSpaceSuit) {
-            this._correctSpaceSuitMovementSpeed();
-        }
         this._correctDiagonalMovementSpeed();
-    }
-
-    _correctSpaceSuitMovementSpeed() {
-        const SPACE_SUIT_SPEED_MULTIPLIER = 0.5;
-        const velocity = this.player.sprite.body.velocity;
-        this.player.sprite.body.setVelocityX(velocity.x * SPACE_SUIT_SPEED_MULTIPLIER);
-        this.player.sprite.body.setVelocityY(velocity.y * SPACE_SUIT_SPEED_MULTIPLIER);
     }
 
     _correctDiagonalMovementSpeed() {
         const velocity = this.player.sprite.body.velocity;
         if (velocity.x != 0 && velocity.y != 0) {
             // Pythagoras!
-            const desiredSpeed = Math.sqrt((constants.speed * constants.speed) / 2);
+            const desiredSpeed = Math.sqrt((velocity.x * velocity.x) / 2);
             this.player.sprite.setVelocityX(desiredSpeed * Math.sign(velocity.x));
             this.player.sprite.setVelocityY(desiredSpeed * Math.sign(velocity.y));
         }
