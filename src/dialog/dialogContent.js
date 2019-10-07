@@ -62,7 +62,8 @@ const content = {
             {
                 "text": "Turn on emergency lights",
                 "action": () => {
-                    stateMachine.player.scene.emergencyLightsBedroomLayer.visible = true;
+					stateMachine.player.scene.emergencyLightsBedroomLayer.visible = true;
+					stateMachine.player.scene.setLightmask('bedroom-emergency');
                     dialog.show('speech-oxygen-level-low-3');
                 }
             },
@@ -139,6 +140,7 @@ const content = {
 		"text": "Thanks Dave. Now we need to get the generators up and running.<br>Please follow the emergency lights to the generator room.",
 		"action": () => {
 			stateMachine.player.scene.emergencyLightsGeneratorLayer.visible = true;
+			stateMachine.player.scene.setLightmask('all-emergency');
 			lockDoor('door-bedroom', false);
 			lockDoor('door-004', false);
 			lockDoor('door-generatorroom', false);

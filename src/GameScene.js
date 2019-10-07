@@ -2,7 +2,6 @@ import { Scene } from 'phaser';
 
 import mapJson from './assets/ship.json';
 import tiles from './assets/Tiles.png';
-import lightmap from './assets/lightmap.png';
 import player_acting from './assets/Dave acting.png'
 import daveLying from './assets/Dave-lying.png'
 import critter_eating from './assets/Critter.png'
@@ -39,6 +38,10 @@ import dialog from './dialog/dialog.js';
 import stateMachine from './stateMachine.js';
 
 import constants from './constants.js';
+
+import lightmap_bedroom_dark from './assets/Lights/bedroom-dark.png';
+import lightmap_bedroom_emergency from './assets/Lights/bedroom-emergency.png';
+import lightmap_all_emergency from './assets/Lights/all-emergency.png';
 
 export default class GameScene extends Scene {
 	constructor() {
@@ -92,7 +95,9 @@ export default class GameScene extends Scene {
 		);
 		this.load.scenePlugin('animatedTiles', AnimatedTiles, 'animatedTiles', 'animatedTiles');
 		
-		this.load.image('lightmap', lightmap);
+		this.load.image('bedroom-dark', lightmap_bedroom_dark);
+		this.load.image('bedroom-emergency', lightmap_bedroom_emergency);
+		this.load.image('all-emergency', lightmap_all_emergency);
 
 		this.load.image('dave-lying', daveLying);
 
@@ -228,20 +233,6 @@ export default class GameScene extends Scene {
 		dialog.init(this.Dialog, this, this.player);
 		stateMachine.init(this.player);
 		this.cameras.main.startFollow(this.player.sprite);
-		const lightMask = this.make.sprite({
-			key: 'lightmap',
-			x: 380,
-			y: 220,
-			add: false
-		});
-
-		lightMask.update = () => {
-			lightMask.x = Math.round(32 + this.game.config.width - this.cameras.main.scrollX);
-			lightMask.y = Math.round(96 + this.game.config.height - this.cameras.main.scrollY);
-		}
-		this.lightMask = lightMask;
-
-		// this.cameras.main.setMask(new Phaser.Display.Masks.BitmapMask(this, lightMask));
 
 		this.sounds.lightSwitch = this.sound.add('light-switch-1');
 		this.sounds.lightSwitchAlternative = this.sound.add('light-switch-2');
@@ -256,6 +247,8 @@ export default class GameScene extends Scene {
 		this.sounds.putOnSpaceSuitNoise = this.sound.add('put-on-space-suit-noise-1');
 		this.sounds.heavyBreathing = this.sound.add('heavy-breathing-1');
 
+		this.setLightmask('bedroom-dark');
+
 		this.daveLying = this.make.sprite({
 			key: 'dave-lying',
 			x: constants.START_X,
@@ -268,6 +261,24 @@ export default class GameScene extends Scene {
 
 		dialog.show('speech-awakening');
 		// dialog.show('generator-console');
+	}
+
+	setLightmask(key) {
+		const lightMask = this.make.sprite({
+			key: key,
+			x: 380,
+			y: 220,
+			add: false
+		});
+
+		lightMask.update = () => {
+			lightMask.x = Math.round(32 + this.game.config.width - this.cameras.main.scrollX);
+			lightMask.y = Math.round(96 + this.game.config.height - this.cameras.main.scrollY);
+		}
+		this.lightMask = lightMask;
+
+		this.cameras.main.setMask(new Phaser.Display.Masks.BitmapMask(this, lightMask));
+
 	}
 
 	update(time, delta) {
