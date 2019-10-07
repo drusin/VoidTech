@@ -107,6 +107,7 @@ const content = {
 		"speaker": "dave",
 		"action": () => {
 			stateMachine.player.scene.brokenPipesLayer.visible = false;
+			stateMachine.player.scene.setLightmask('all-emergency');
 			dialog.show('speech-fixed-leak');
 		}
 	},
@@ -140,7 +141,6 @@ const content = {
 		"text": "Thanks Dave. Now we need to get the generators up and running.<br>Please follow the emergency lights to the generator room.",
 		"action": () => {
 			stateMachine.player.scene.emergencyLightsGeneratorLayer.visible = true;
-			stateMachine.player.scene.setLightmask('all-emergency');
 			lockDoor('door-bedroom', false);
 			lockDoor('door-004', false);
 			lockDoor('door-generatorroom', false);
