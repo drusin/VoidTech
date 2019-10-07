@@ -66,8 +66,9 @@ class StateMachine {
     }
 
     handleInteractions() {
-        const { space } = this.player.cursorkeys;
-        if (Phaser.Input.Keyboard.JustDown(space)) {
+        const { SPACE, ENTER } = this.player.cursorkeys;
+        const confirmPressed = Phaser.Input.Keyboard.JustDown(SPACE) || Phaser.Input.Keyboard.JustDown(ENTER);
+        if (confirmPressed) {
             this.player.scene.physics.overlap(this.player.sprite, this.player.scene.speechTriggers, (left, right) => {
                 const trigger = left === this.player.sprite ? right : left;
                 dialog.show(trigger.getData('action'), trigger);
@@ -90,19 +91,25 @@ class StateMachine {
 
     updateMovement() {
         const speed = this.player.wearsSpaceSuit ? constants.speed * constants.spaceSuiteMovementMultiplier : constants.speed;
-        const { left, right, up, down } = this.player.cursorkeys;
-        if (!(left.isDown || right.isDown)) {
+
+        const { LEFT, RIGHT, UP, DOWN, W, A, S, D } = this.player.cursorkeys;
+        const leftPressed = (LEFT.isDown || A.isDown);
+        const rightPressed = (RIGHT.isDown || D.isDown);
+        const upPressed = (UP.isDown || W.isDown);
+        const downPressed = (DOWN.isDown || S.isDown);
+
+        if (!(leftPressed || rightPressed)) {
             this.player.sprite.setVelocityX(0);
         }
         else {
-            this.player.sprite.setVelocityX(left.isDown ? -speed : speed);
+            this.player.sprite.setVelocityX(leftPressed ? -speed : speed);
         }
 
-        if (!(up.isDown || down.isDown)) {
+        if (!(upPressed || downPressed)) {
             this.player.sprite.setVelocityY(0);
         }
         else {
-            this.player.sprite.setVelocityY(up.isDown ? -speed : speed);
+            this.player.sprite.setVelocityY(upPressed ? -speed : speed);
         }
 
         this.player._updateWalkingSound();
@@ -122,17 +129,21 @@ class StateMachine {
     updateDialog() {
         this.player.sprite.setVelocityX(0);
         this.player.sprite.setVelocityY(0);
-        const { up, down, space } = this.player.cursorkeys;
+        const { UP, DOWN, W, S, SPACE, ENTER } = this.player.cursorkeys;
+        const confirmPressed = (Phaser.Input.Keyboard.JustDown(SPACE) || Phaser.Input.Keyboard.JustDown(ENTER));
+        const upPressed = (Phaser.Input.Keyboard.JustDown(UP) || Phaser.Input.Keyboard.JustDown(W));
+        const downPressed = (Phaser.Input.Keyboard.JustDown(DOWN) || Phaser.Input.Keyboard.JustDown(S));
+
         if (dialog.menu) {
-            if (Phaser.Input.Keyboard.JustDown(down) && document.activeElement.nextElementSibling) {
+            if (downPressed && document.activeElement.nextElementSibling) {
                 document.activeElement.nextElementSibling.focus();
             }
-            if (Phaser.Input.Keyboard.JustDown(up) && document.activeElement.previousElementSibling) {
+            if (upPressed && document.activeElement.previousElementSibling) {
                 document.activeElement.previousElementSibling.focus();
             }
         }
         else {
-            if (Phaser.Input.Keyboard.JustDown(space)) {
+            if (confirmPressed) {
                 this.setState(STATES.normal);
                 dialog.hide();
             }

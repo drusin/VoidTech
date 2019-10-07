@@ -32,19 +32,23 @@ export default class HomeScene extends Scene {
         this.soundsText = this.centeredText(1, "Sounds: " + (this.sounds ? "ON" : "OFF"));
         this.musicText = this.centeredText(2, "Music: " + (this.music ? "ON" : "OFF"));
 
-        this.cursorkeys = this.scene.scene.input.keyboard.createCursorKeys();
+        this.cursorkeys = this.scene.scene.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
     }
 
     update(time, delta) {
-        const { up, down, space } = this.cursorkeys;
+        const { UP, DOWN, W, S, SPACE, ENTER } = this.cursorkeys;
+        const confirmPressed = (Phaser.Input.Keyboard.JustDown(SPACE) || Phaser.Input.Keyboard.JustDown(ENTER));
+        const upPressed = (Phaser.Input.Keyboard.JustDown(UP) || Phaser.Input.Keyboard.JustDown(W));
+        const downPressed = (Phaser.Input.Keyboard.JustDown(DOWN) || Phaser.Input.Keyboard.JustDown(S));
+        
         let action = false;
-        if (Phaser.Input.Keyboard.JustDown(up)) {
+        if (upPressed) {
             this.selectedIndex = (this.selectedIndex + 2) % 3;
             this.menuChanged = true;
-        } else if (Phaser.Input.Keyboard.JustDown(down)) {
+        } else if (downPressed) {
             this.selectedIndex = (this.selectedIndex + 1) % 3;
             this.menuChanged = true;
-        } else if (Phaser.Input.Keyboard.JustDown(space)) {
+        } else if (confirmPressed) {
             action = true;
             this.menuChanged = true;
         }

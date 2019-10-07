@@ -6,7 +6,7 @@ export default class Player {
         this.sprite = scene.physics.add.sprite(constants.START_X, constants.START_Y, PLAYER_TILESET_KEY);
         this.sprite.setSize(16, 16);
         this.createAnimations(scene);
-        this.cursorkeys = scene.input.keyboard.createCursorKeys();
+        this.cursorkeys = scene.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
         this.dialogs = scene.Dialog;
         this.scene = scene;
         this.wearsSpaceSuit = false;

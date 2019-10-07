@@ -56,7 +56,7 @@ class Dialog {
             button.classList = 'dialog-button'
             button.innerHTML = element.text;
             button.addEventListener('keydown', (e) => {
-                if (e.code !== 'Space') {
+                if (e.code !== 'Space' && e.code !== 'Enter') {
                     return;
                 }
                 e.stopPropagation();
