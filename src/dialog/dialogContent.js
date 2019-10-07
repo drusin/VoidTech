@@ -309,7 +309,9 @@ const content = {
 		"text": "The generators appear to be working in an orderly fashion",
 		"action": () => {
 			stateMachine.player.scene.music.setTrack3();
-			alert('turn on the light now')
+			stateMachine.player.scene.emergencyLightsBedroomLayer.visible = false;
+			stateMachine.player.scene.emergencyLightsGeneratorLayer.visible = false;
+			stateMachine.player.scene.setLightmask('full-lights-pipe-broken');
 		}
 	},
 	"speech-photograph-1": {

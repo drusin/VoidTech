@@ -42,6 +42,8 @@ import constants from './constants.js';
 import lightmap_bedroom_dark from './assets/Lights/bedroom-dark.png';
 import lightmap_bedroom_emergency from './assets/Lights/bedroom-emergency.png';
 import lightmap_all_emergency from './assets/Lights/all-emergency.png';
+import lightmap_full_lights_no_pipe from './assets/Lights/full-lights-pipe-broken.png';
+import lightmap_full_lights from './assets/Lights/full-lights.png';
 
 import Music from './music.js';
 
@@ -101,6 +103,8 @@ export default class GameScene extends Scene {
 		this.load.image('bedroom-dark', lightmap_bedroom_dark);
 		this.load.image('bedroom-emergency', lightmap_bedroom_emergency);
 		this.load.image('all-emergency', lightmap_all_emergency);
+		this.load.image('full-lights-pipe-broken', lightmap_full_lights_no_pipe);
+		this.load.image('full-lights', lightmap_full_lights);
 
 		this.load.image('dave-lying', daveLying);
 
