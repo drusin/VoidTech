@@ -304,7 +304,7 @@ const content = {
 			dialog.show('generator-console-circuit-correct-004');
 		}
 	},
-	"generator-console-circuit-correct-004": {
+	"generator-console-circuit-correct-004": { 
 		"speaker": "lisa",
 		"text": "The generators appear to be working in an orderly fashion",
 		"action": () => {
@@ -312,6 +312,8 @@ const content = {
 			stateMachine.player.scene.emergencyLightsBedroomLayer.visible = false;
 			stateMachine.player.scene.emergencyLightsGeneratorLayer.visible = false;
 			stateMachine.player.scene.setLightmask('full-lights-pipe-broken');
+			stateMachine.player.scene.brokenPipesLayer.visible = true;
+			stateMachine.player.scene.critter.sprite.visible = true;
 		}
 	},
 	"speech-photograph-1": {
