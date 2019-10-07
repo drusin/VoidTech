@@ -267,6 +267,7 @@ export default class GameScene extends Scene {
 		this.player.sprite.visible = false;
 
 		dialog.show('speech-awakening');
+		// dialog.show('generator-console');
 	}
 
 	update(time, delta) {

@@ -161,6 +161,52 @@ const content = {
 		"text": "Looks like the circuit was overloaded and shut down. I wonder what caused this much damage…<br> I’ll redistribute the generators to avoid power surges in the future.",
 		"speaker": "dave"
 		},
+	"entered-generator-room": {
+		"speaker": "lisa",
+		"text": "At the end of the room there is a console. Use it to restart the generators"
+	},
+	"generator-console": {
+		"text": "Generator control console",
+		"speaker": "lisa",
+		"buttons": [
+			{
+				"text": "Power on",
+				"action": () => dialog.show('powering-on-generators-001')
+			},
+		]
+	},
+	"powering-on-generators-001": {
+		"speaker": "lisa",
+		"text": "Powering on generators, please stand by...",
+		"action": () => dialog.show('powering-on-generators-002')
+	},
+	"powering-on-generators-002": {
+		"speaker": "lisa",
+		"text": "Running stress tests...",
+		"action": () => {
+			dialog.show('powering-on-generators-003');
+		}
+	},
+	"powering-on-generators-003": {
+		"speaker": "lisa",
+		"text": "Critical error, shutting down generators.",
+		// "action": () => dialog.show('powering-on-generators-002')
+	},
+	"generator-console-circuit-menu": {
+		"text": "Choose the circuit to use",
+		"speaker": "lisa",
+		"buttons": [
+			{
+				"text": "O-O-O O-O&nbsp&nbsp&nbsp<br>&nbsp| | | |&nbsp&nbsp<br>&nbsp&nbspO O-O O-OO"
+			},
+			{
+				"text": "O-O O&nbspO-O&nbsp&nbsp&nbsp<br>&nbsp| &nbsp | |&nbsp&nbsp<br>&nbsp&nbspO-O-O O-OO"
+			},
+			{
+				"text": "O-O-O-O-O&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbspO-O-O-O-OO"
+			},
+		]
+	},
 	"speech-photograph-1": {
 		"text": "I wonder who they are… They look so happy. Did they used to work here?",
 		"speaker": "dave"

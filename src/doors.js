@@ -35,7 +35,7 @@ const doors = {
     },
     "door-bedroom": {
         open: false,
-        locked: true,
+        locked: false,
         tiles: [
             [28, 15],
             [29, 15]
