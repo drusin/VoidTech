@@ -231,6 +231,7 @@ const content = {
 					stateMachine.state = STATES.cutScene;
 					
 					stateMachine.player.sprite.anims.play('putOnSpaceSuit', true);
+					stateMachine.player.scene.sounds.putOnSpaceSuitNoise.play();
 					stateMachine.player.sprite.on('animationcomplete', function (animation) {
 						if (animation.key === 'putOnSpaceSuit') {
 							stateMachine.state = STATES.normal;
@@ -257,6 +258,7 @@ const content = {
 					stateMachine.state = STATES.cutScene;
 					
 					stateMachine.player.sprite.anims.playReverse('putOnSpaceSuit', true);
+					stateMachine.player.scene.sounds.putOnSpaceSuitNoise.play();
 					stateMachine.player.sprite.on('animationcomplete', function (animation) {
 						if (animation.key === 'putOnSpaceSuit') {
 							stateMachine.state = STATES.normal;

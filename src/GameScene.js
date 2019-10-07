@@ -25,6 +25,9 @@ import doorSwoosh from './assets/sounds/Okt. 06, 259500-door-shush.ogg';
 import oxygen from './assets/sounds/Okt. 06, 581718-oxigen.ogg';
 import generatorNoise1 from './assets/sounds/Okt. 07, 830680-generator-noise.ogg';
 import generatorNoise2 from './assets/sounds/Okt. 07, 128891-generator-noise-alternative.ogg';
+import drawerWardrobe1 from './assets/sounds/Okt. 06, 578141-drawer-wardrobe.ogg';
+import putOnSpaceSuitNoise from './assets/sounds/Okt. 07, 690746-put-on-space-suit.ogg';
+import heavyBreathing from './assets/sounds/Okt. 07, 755535-breathing.ogg';
 
 import { PLAYER_TILESET_KEY } from './entities/player.js';
 import { CRITTER_KEY } from './entities/critter.js';
@@ -103,6 +106,9 @@ export default class GameScene extends Scene {
 		this.load.audio('oxygen', oxygen);
 		this.load.audio('generator-noise-1', generatorNoise1);
 		this.load.audio('generator-noise-2', generatorNoise2);
+		this.load.audio('drawer-wardrobe-1', drawerWardrobe1);
+		this.load.audio('put-on-space-suit-noise-1', putOnSpaceSuitNoise);
+		this.load.audio('heavy-breathing-1', heavyBreathing);
 	}
 
 	initializeObjects(tilemap) {
@@ -246,6 +252,9 @@ export default class GameScene extends Scene {
 		this.sounds.doorSwoosh1 = this.sound.add('door-swoosh-1');
 		this.sounds.oxygen = this.sound.add('oxygen');
 		this.sounds.generatorNoise = this.sound.add('generator-noise-2');
+		this.sounds.drawerWardrobe = this.sound.add('drawer-wardrobe-1');
+		this.sounds.putOnSpaceSuitNoise = this.sound.add('put-on-space-suit-noise-1');
+		this.sounds.heavyBreathing = this.sound.add('heavy-breathing-1');
 
 		this.daveLying = this.make.sprite({
 			key: 'dave-lying',

@@ -22,7 +22,7 @@ export default class Player {
         scene.anims.create({
             key: 'putOnSpaceSuit',
             frames: scene.anims.generateFrameNumbers(PLAYER_TILESET_KEY, { start: 8, end: 11 }),
-            frameRate: 5,
+            frameRate: 2,
             repeat: 0
         });
         scene.anims.create({
