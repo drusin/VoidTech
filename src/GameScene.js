@@ -62,7 +62,7 @@ export default class GameScene extends Scene {
 		);
 		this.load.spritesheet('door',
 			door,
-			{ frameWidth: 16, frameHeight: 16 }
+			{ frameWidth: 16, frameHeight: 32 }
 		);
 		this.load.spritesheet('lever',
 			lever,
