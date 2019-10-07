@@ -508,6 +508,12 @@ const content = {
 		"text": "'User: Gate Keepers'",
 		"speaker": "dave"
 	},
+	"enter-video-tape": {
+		"text": "Let's watch some video, then...",
+		"speaker": "dave",
+		"action": () => dialog.show('start-playing-video-tape')
+
+	},
 	"start-playing-video-tape": {
 		"text": "Dave, this information is not ment for you. Please, turn the device off.",
 		"speaker": "lisa",
@@ -615,13 +621,25 @@ const content = {
 		"speaker": "dave"
 	},
 	"vhs-room-vhs-terminal": {
-		"text": "alle 4 terminals"
+		"text": "Just a VHS terminal. No tape is entered."
 	},
 	"vhs-room-computer": {
 		"text": "computer"
 	},
 	"vhs-room-vhs-table": {
-		"text": "table with vhs tape on it"
+		"text": "A video-tape... the label says 'Dave05061991'",
+		"speaker": "dave",
+		"buttons": [
+			{
+				"text": "Pick up the tape",
+				"action": () => { 
+					content['vhs-room-vhs-terminal'].proxyFor = 'enter-video-tape'
+				}
+			},
+			{
+				"text": "Ignore it"
+			}
+		]
 	},
 	"bedroom-drawer-002": {
 		"text": "Just old books and other things that would normally collect dust.",
