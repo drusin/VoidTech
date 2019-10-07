@@ -28,7 +28,7 @@ export default class Player {
         scene.anims.create({
             key: 'walkingInSpaceSuit',
             frames: scene.anims.generateFrameNumbers(PLAYER_TILESET_KEY, { start: 12, end: 15 }),
-            frameRate: 5,
+            frameRate: 3,
             repeat: 0
         });
         scene.anims.create({
