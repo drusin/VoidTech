@@ -644,6 +644,7 @@ const content = {
 			stateMachine.player.scene.brokenPipesLayer.visible = false;
 			stateMachine.player.scene.critter.sprite.visible = false;
 			stateMachine.player.scene.critterCollider.active = false;
+			content['vhs-room-vhs-table'].proxyFor = 'vhs-room-in-the-end';
 		}
 	},
 	"vhs-room-vhs-terminal": {
