@@ -25,6 +25,10 @@ class Dialog {
     }
 
     show(key, trigger) {
+        if (this.player._isMoving(this.player.sprite.body.velocity)) {
+            this.player.sprite.setVelocityX(0);
+            this.player.sprite.setVelocityY(0);
+        }
         while (this.buttons.firstChild) {
             this.buttons.firstChild.remove();
         }
