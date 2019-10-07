@@ -245,6 +245,57 @@
                  "width":33.2778702163062,
                  "x":448.634991064276,
                  "y":343.871325568497
+                }, 
+                {
+                 "height":16.6389351081531,
+                 "id":28,
+                 "name":"storage-drawer-003",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"storage-drawer-003"
+                        }],
+                 "rotation":0,
+                 "type":"speech-trigger",
+                 "visible":true,
+                 "width":27.7315585135884,
+                 "x":513.958217785173,
+                 "y":423.984716829975
+                }, 
+                {
+                 "height":16.6389,
+                 "id":29,
+                 "name":"storage-drawer-002",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"storage-drawer-002"
+                        }],
+                 "rotation":0,
+                 "type":"speech-trigger",
+                 "visible":true,
+                 "width":27.7316,
+                 "x":547.544195686202,
+                 "y":423.676605956123
+                }, 
+                {
+                 "height":16.6389,
+                 "id":30,
+                 "name":"storage-drawer-001",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"storage-drawer-001"
+                        }],
+                 "rotation":0,
+                 "type":"speech-trigger",
+                 "visible":true,
+                 "width":27.7316,
+                 "x":611.018651839527,
+                 "y":345.411985262217
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -382,10 +433,10 @@
          "y":0
         }],
  "nextlayerid":33,
- "nextobjectid":28,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.2.3",
+ "tiledversion":"1.2.4",
  "tileheight":16,
  "tilesets":[
         {
