@@ -160,8 +160,13 @@ const content = {
 			lockDoor('door-bedroom', false);
 			lockDoor('door-004', false);
 			lockDoor('door-generatorroom', false);
+			content['repair-leak-ducttape'].proxyFor = 'fixed-leak-0815';
 		},
 		"speaker": "lisa"
+	},
+	"fixed-leak-0815": {
+		"text": "As good as new.",
+		"speaker": "dave"
 	},
 	"speech-fix-generators-1": {
 		"text": "One of the generators is losing coolant fluid.<br>The coolant temperature cannot reach maximum level.",
@@ -715,7 +720,10 @@ const content = {
 	"bedroom-bed-001": {
 		"speaker": "dave",
 		"text": "Good night...",
-		"action": () => stateMachine.player.scene.game.scene.start(CreditsScene.KEY)
+		"action": () => { 
+			stateMachine.player.scene.game.scene.start(CreditsScene.KEY);
+			stateMachine.setState(STATES.cutScene);
+		}
 	}
 }
 
