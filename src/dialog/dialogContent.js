@@ -502,17 +502,17 @@ const content = {
 	},
 	"replay-video-tape": {
 		"text": "Welcome, dear customer and thank you choosing Lisa's Landing for your upcoming travel.",
-		"speaker": "lisa-tape",
+		"speaker": "lisaTape",
 		"action": () => dialog.show('replay-video-tape-2')
 	},
 	"replay-video-tape-2": {
 		"text": "To guarantee you safety during the cryo-sleep, we have equiped all our ships with the newest Lisa-observation-system...",
-		"speaker": "lisa-tape",
+		"speaker": "lisaTape",
 		"action": () => dialog.show('replay-video-tape-3')
 	},
 	"replay-video-tape-3": {
 		"text": "... together with our patented Dave-maintenance cloning system.",
-		"speaker": "lisa-tape",
+		"speaker": "lisaTape",
 		"action": () => dialog.show('replay-video-tape-4')
 	},
 	"replay-video-tape-4": {
@@ -522,7 +522,7 @@ const content = {
 	},
 	"replay-video-tape-5": {
 		"text": "To save resources, each Dave-entity is created on demand, and dissolved after taking care of any potential peril.",
-		"speaker": "lisa-tape",
+		"speaker": "lisaTape",
 		"action": () => dialog.show('replay-video-tape-6')
 	},
 	"replay-video-tape-6": {

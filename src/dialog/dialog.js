@@ -3,6 +3,7 @@ import stateMachine from '../stateMachine.js';
 import { STATES } from '../stateMachine.js';
 
 import lisa from '../assets/Lisa-talking.gif';
+import lisaTape from '../assets/Lisa-talking-video.gif';
 import dave from '../assets/Dave-talking.gif';
 
 const speakerImages = {
