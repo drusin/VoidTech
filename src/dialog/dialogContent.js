@@ -429,13 +429,16 @@ const content = {
         ]
 	},
 	"storage-drawer-001": {
-		"text": "TODO: nothing of interest1"
+		"text": "There is nothing useful in there.",
+		"speaker": "dave"
 	},
 	"storage-drawer-002": {
-		"text": "TODO: nothing of interest2"
+		"text": "Typical things you see in a storage room. Nothing interesting!",
+		"speaker": "dave"
 	},
 	"storage-drawer-003": {
-		"text": "TODO: nothing of interest3"
+		"text": "Oh there is a note!<br>…<br>'Kitchen supplies'<br>How disappointing…",
+		"speaker": "dave"
 	}
 }
 
