@@ -158,7 +158,7 @@ export default class Sfx {
 		this.sounds.drawerWardrobe.play({volume: 0.3});
 	}
 
-	wearSpaceSuit() {
+	putOnSpaceSuit() {
 		if (this.musicEnabled) {
 			this.getCurrentTrack().setVolume(0.5);
 		}
