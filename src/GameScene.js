@@ -180,7 +180,7 @@ export default class GameScene extends Scene {
 
 		this.player = new Player(this);
 		this.physics.add.collider(this.player.sprite, wallLayer);
-		this.physics.add.collider(this.player.sprite, this.furnitureLayer);
+		this.physics.add.collider(this.player.sprite, furnitureLayer);
 		this.physics.add.collider(this.player.sprite, this.doorLayer);
 		this.physics.add.collider(this.player.sprite, this.animatedLayer);
 
