@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import GameScene from './GameScene';
+import HomeScene from './HomeScene';
 
 const config = {
 	type: Phaser.AUTO,
@@ -19,7 +20,7 @@ const config = {
 		default: 'arcade',
 		// arcade: { debug: true }
 	},
-	scene: [GameScene]
+	scene: [HomeScene, GameScene]
 };
 
 const GAME = new Phaser.Game(config);
