@@ -483,6 +483,60 @@ const content = {
 		"text": "'User: Gate Keepers'",
 		"speaker": "dave"
 	},
+	"start-playing-video-tape": {
+		"text": "Dave, this information is not ment for you. Please, turn the device off.",
+		"speaker": "lisa",
+		"buttons": [
+			{
+				"text": "I have a right to know the truth about me",
+				"action": () => dialog.show('replay-video-tape')
+			},
+			{
+				"text": "Ok, I'm sorry."
+			}
+		]
+
+	},
+	"replay-video-tape": {
+		"text": "Welcome, dear customer and thank you choosing Lisa's Landing for your upcoming travel.",
+		"speaker": "lisa-tape",
+		"action": () => dialog.show('replay-video-tape-2')
+	},
+	"replay-video-tape-2": {
+		"text": "To guarantee you safety during the cryo-sleep, we have equiped all our ships with the newest Lisa-observation-system...",
+		"speaker": "lisa-tape",
+		"action": () => dialog.show('replay-video-tape-3')
+	},
+	"replay-video-tape-3": {
+		"text": "... together with our patented Dave-maintenance cloning system.",
+		"speaker": "lisa-tape",
+		"action": () => dialog.show('replay-video-tape-4')
+	},
+	"replay-video-tape-4": {
+		"text": "Wait... that's me on the screen! Why can't I recall this?",
+		"speaker": "dave",
+		"action": () => dialog.show('replay-video-tape-5')
+	},
+	"replay-video-tape-5": {
+		"text": "To save resources, each Dave-entity is created on demand, and dissolved after taking care of any potential peril.",
+		"speaker": "lisa-tape",
+		"action": () => dialog.show('replay-video-tape-6')
+	},
+	"replay-video-tape-6": {
+		"text": "So this funny looking bed is not a bed after all?!",
+		"speaker": "dave",
+		"action": () => dialog.show('replay-video-tape-7')
+	},
+	"replay-video-tape-7": {
+		"text": "Please go to sleep, Dave. The cryo-chambers below are off limits for you!",
+		"speaker": "lisa",
+		"action": () => dialog.show('replay-video-tape-8')
+	},
+	"replay-video-tape-8": {
+		"text": "You don't have an access-card for the lift anyway. We don't want you to starve to death somewhere on the floor without any chance of recycling the biomass.",
+		"speaker": "lisa",
+		"action": () => dialog.show('replay-video-tape-8')
+	}
 }
 
 export default content;
