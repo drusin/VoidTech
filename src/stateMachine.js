@@ -5,7 +5,8 @@ import { ensureDoorOpen, ensureAllDoorsClosed } from './doors.js';
 
 const STATES = {
     normal: 'normal',
-    dialog: 'dialog'
+    dialog: 'dialog',
+    cutScene: 'cutScene'
 };
 
 Object.freeze(STATES);
@@ -28,9 +29,13 @@ class StateMachine {
                 this.updateMovement();
                 this.handleInteractions();
                 this.updateAreaSounds();
+                this.player.update();
                 break;
             case STATES.dialog:
                 this.updateDialog();
+                break;
+            case STATES.cutScene:
+                // do nothing and wait till cutscene is over
         }
     }
 

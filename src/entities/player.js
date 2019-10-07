@@ -20,6 +20,12 @@ export default class Player {
             repeat: -1
         });
         scene.anims.create({
+            key: 'putOnSpaceSuit',
+            frames: scene.anims.generateFrameNumbers(PLAYER_TILESET_KEY, { start: 8, end: 11 }),
+            frameRate: 5,
+            repeat: 0
+        });
+        scene.anims.create({
             key: 'standing',
             frames: scene.anims.generateFrameNumbers(PLAYER_TILESET_KEY, { start: 0, end: 0 }),
             frameRate: 1,
@@ -35,6 +41,7 @@ export default class Player {
             this.sprite.rotation = this.sprite.body.angle + Math.PI / 2;
         }
         else {
+            // console.log('set anim to standing')
             this.sprite.anims.play('standing', true);
         }
     }

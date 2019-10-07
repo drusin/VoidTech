@@ -263,7 +263,6 @@ export default class GameScene extends Scene {
 
 	update(time, delta) {
 		stateMachine.update();
-		this.player.update();
 		this.critter.update();
 		this.lightMask.update();
 	}

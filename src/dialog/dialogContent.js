@@ -1,5 +1,5 @@
 import dialog from './dialog.js';
-import stateMachine from '../stateMachine';
+import stateMachine, { STATES } from '../stateMachine';
 import { lockDoor } from '../doors.js';
 
 const content = {
@@ -228,7 +228,15 @@ const content = {
             {
                 "text": "Put it on",
                 "action": () => {
-					console.log('anziehanimation');
+					stateMachine.state = STATES.cutScene;
+					
+					stateMachine.player.sprite.anims.play('putOnSpaceSuit', true);
+					stateMachine.player.sprite.on('animationcomplete', function (animation) {
+						if (animation.key === 'putOnSpaceSuit') {
+							stateMachine.state = STATES.normal;
+						}
+					});
+
 					stateMachine.player.wearsSpaceSuit = true;
 					content["space-suit-drawer"].proxyFor = "space-suit-drawer-empty";
 					lockDoor("door-generatorroom", false);
@@ -247,6 +255,7 @@ const content = {
                 "text": "Put it out",
                 "action": () => {
 					console.log('ausziehanimation');
+					// playReverse()
 					stateMachine.player.wearsSpaceSuit = false;
 					content["space-suit-drawer"].proxyFor = null;
 					lockDoor("door-generatorroom", true);
