@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>VoidTech</title>
+	<style lang="css">
+		body {
+			margin: 0;
+			padding:0;
+		}
+		p {
+			margin: 0 0 10px 0;
+
+		}
+		#dialog-parent {
+			display: flex;
+			justify-content: flex-end;
+			flex-direction: column;
+			position: absolute;
+			left: 0;
+			top: 0;
+		}
+		#dialog {
+			background-color: black;
+			color: green;  
+			border-color: green;
+			border-style: dashed;
+			font-size: 24px;
+			margin: 16px;
+			min-height: 20px;
+			padding: 16px;
+			display: none;
+		}
+		.dialog-button {
+			display: block;
+			background-color: black;
+			color: green; 
+			font-size: 24px;
+			border: none;
+			margin: 0;
+			padding: 0;
+			font-style: italic
+		}
+
+		.dialog-button:focus {
+			outline: none;
+		}
+
+		.dialog-button:focus::before {
+			content: '>'
+		}
+		#speaker {
+			display: flex;
+			justify-content: flex-end;
+			flex-direction: column;
+			position: absolute;
+			right: 10px;
+			bottom: 10px;
+		}
+	  </style>
+</head>
+<body>
+<div id="canvas-parent"></div>
+<div id="dialog-parent">
+	<div id="dialog">
+		<p id="text">test</p>
+		<div id="buttons">
+			<button class=dialog-button>Test1</button>
+			<button class=dialog-button>Test2</button>
+		</div>
+	</div>
+	<div id="speaker">
+		<img id="entity" />
+	</div>
+</div>
+<script type="text/javascript" src="main.js"></script></body>
+</html>
