@@ -71,7 +71,7 @@ export default class Player {
         const walkingOnWoodSound = this.scene.sounds.walkingWood2;
         const walkingOnMetalSound = this.scene.sounds.walkingMetal1;
 
-        const walkingRate = this.wearsSpaceSuit ? 1.0 * constants.spaceSuiteMovementMultiplier : 1.0;
+        const walkingRate = this.wearsSpaceSuit ? 1.0 * (constants.spaceSuiteMovementMultiplier + 0.2) : 1.0;
 
         const tileStandingOn = this.scene.walkableLayer.getTileAtWorldXY(this.sprite.x, this.sprite.y);
         const currentFloorType = tileStandingOn.properties['floorType'];
