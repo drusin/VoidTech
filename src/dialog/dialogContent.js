@@ -132,10 +132,24 @@ const content = {
 			}
 		]
 	},
+	"bedroom-drawer-001-after-removing-ducttape": {
+		"text": "A picure...",
+		"speaker": "dave",
+		"buttons": [
+			{
+				"text": "Look at the picture",
+				"action": () => dialog.show('no-time-for-this')
+			}
+		]
+	},
 	"bedroom-drawer-took-ductape": {
 		"text": "This will be useful.",
 		"speaker": "dave",
-		"action": () => content['repair-leak-generic'].proxyFor = 'repair-leak-ducttape'
+		"action": () => {
+			content['repair-leak-generic'].proxyFor = 'repair-leak-ducttape'
+			stateMachine.player.scene.ducttapeGoneLayer.visible = true;
+			content['bedroom-drawer-001'].proxyFor = 'bedroom-drawer-001-after-removing-ducttape';
+		}
 	},
 	"speech-fixed-leak": {
 		"text": "Thanks Dave. Now we need to get the generators up and running.<br>Please follow the emergency lights to the generator room.",
