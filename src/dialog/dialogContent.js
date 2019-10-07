@@ -565,8 +565,7 @@ const content = {
 	},
 	"replay-video-tape-8": {
 		"text": "You don't have an access-card for the lift anyway. We don't want you to starve to death somewhere on the floor without any chance of recycling the biomass.",
-		"speaker": "lisa",
-		"action": () => dialog.show('replay-video-tape-8')
+		"speaker": "lisa"
 	},
 	"bridge-console-001": {
 		"text": "Nothing of interest..",

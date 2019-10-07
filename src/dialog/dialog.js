@@ -8,7 +8,8 @@ import dave from '../assets/Dave-talking.gif';
 
 const speakerImages = {
     lisa,
-    dave
+    dave,
+    lisaTape
 }
 
 class Dialog {
