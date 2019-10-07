@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import GameScene from './GameScene';
 import HomeScene from './HomeScene';
+import CreditsScene from './CreditsScene';
 import Sfx from './sfx';
 
 const config = {
@@ -21,7 +22,7 @@ const config = {
 		default: 'arcade',
 		// arcade: { debug: true }
 	},
-	scene: [HomeScene, GameScene]
+	scene: [HomeScene, GameScene, CreditsScene]
 };
 
 const GAME = new Phaser.Game(config);
