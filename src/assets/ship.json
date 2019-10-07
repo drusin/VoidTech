@@ -841,7 +841,7 @@
                          "value":"vhs-room-vhs-table"
                         }],
                  "rotation":0,
-                 "type":"speechj-trigger",
+                 "type":"speech-trigger",
                  "visible":true,
                  "width":40.0566956307389,
                  "x":387.009305478523,
