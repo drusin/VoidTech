@@ -31,7 +31,7 @@ const doors = {
             [37, 8],
             [38, 8]
         ],
-        locked: true,
+        locked: false,
         lockedDialog: "speech-door-001-locked", // Dialog that pops up if the door is locked
         alreadySeenLockedDialog: false // Prevents showing the dialog over and over again while still standing on the trigger tile. Will be reset after leaving the door-trigger
     },
