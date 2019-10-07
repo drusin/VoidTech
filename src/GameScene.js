@@ -197,7 +197,9 @@ export default class GameScene extends Scene {
 		this.smallAssetsLayer = map.createDynamicLayer('small-assets', smallAssetsTileset, 0, 0);
 		this.bigAssetsLayer = map.createDynamicLayer('big-assets', bigAssetsTileset, 0, 0);
 		this.brokenPipesLayer = map.createDynamicLayer('broken-pipes', animatedTileset, 0, 0);
-
+		this.generatorsOffLayer = map.createDynamicLayer('generators-off', animatedTileset, 0, 0);
+		this.generatorBrokenLayer = map.createDynamicLayer('generator-broken', animatedTileset, 0, 0);
+		this.generatorBrokenLayer.visible = false;
 
 		this.emergencyLightsBedroomLayer = map.createDynamicLayer('emergency-lights-bedroom', lightsTileset, 0, 0);
 		this.emergencyLightsBedroomLayer.visible = false;
