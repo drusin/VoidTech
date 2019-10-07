@@ -39,6 +39,7 @@ class StateMachine {
             case STATES.cutScene:
                 // do nothing and wait till cutscene is over
         }
+        this.player.scene.music.makeSureCorrectMusicPlays();
     }
 
     updateAreaSounds() {

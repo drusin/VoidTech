@@ -43,11 +43,14 @@ import lightmap_bedroom_dark from './assets/Lights/bedroom-dark.png';
 import lightmap_bedroom_emergency from './assets/Lights/bedroom-emergency.png';
 import lightmap_all_emergency from './assets/Lights/all-emergency.png';
 
+import Music from './music.js';
+
 export default class GameScene extends Scene {
 	constructor() {
 		super({ key: GameScene.KEY });
 		this.playerCollider = null;
 		this.sounds = {};
+		this.music = new Music(this);
 	}
 	
 	static get KEY() {
@@ -114,6 +117,7 @@ export default class GameScene extends Scene {
 		this.load.audio('drawer-wardrobe-1', drawerWardrobe1);
 		this.load.audio('put-on-space-suit-noise-1', putOnSpaceSuitNoise);
 		this.load.audio('heavy-breathing-1', heavyBreathing);
+		this.music.load();
 	}
 
 	initializeObjects(tilemap) {
@@ -247,6 +251,8 @@ export default class GameScene extends Scene {
 		this.sounds.putOnSpaceSuitNoise = this.sound.add('put-on-space-suit-noise-1');
 		this.sounds.heavyBreathing = this.sound.add('heavy-breathing-1');
 
+		this.music.init();
+		
 		this.setLightmask('bedroom-dark');
 
 		this.daveLying = this.make.sprite({

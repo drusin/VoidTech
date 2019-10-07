@@ -358,13 +358,22 @@ const content = {
         ]
 	},
 	"storage-drawer-001": {
-		"text": "TODO: nothing of interest1"
+		"text": "TODO: nothing of interest1",
+		"action": () => {
+			stateMachine.player.scene.music.setTrack1();
+		}
 	},
 	"storage-drawer-002": {
-		"text": "TODO: nothing of interest2"
+		"text": "TODO: nothing of interest2",
+		"action": () => {
+			stateMachine.player.scene.music.setTrack2();
+		}
 	},
 	"storage-drawer-003": {
-		"text": "TODO: nothing of interest3"
+		"text": "TODO: nothing of interest3",
+		"action": () => {
+			stateMachine.player.scene.music.setTrack3();
+		}
 	}
 }
 
