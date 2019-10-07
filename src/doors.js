@@ -79,7 +79,8 @@ const doors = {
         tiles: [
             [15, 17],
             [15, 18]
-        ]
+        ],
+        lockedDialog: "speech-door-bridge"
     }
 }
 

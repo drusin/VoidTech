@@ -392,8 +392,8 @@ const content = {
 		"text": "Something strange is going on. Written on the VHS tape is Gate Keepers: Dave05061991.<br> Gate Keepers was the user name written down on the sticky note.",
 		"speaker": "dave"
 		},
-	"speech-door-001-locked": {
-		"text": "TODO: This door seems to be locked because on the other side is no oxigen.",
+	"speech-door-bridge": {
+		"text": "This door seems to be locked because on the other side is no oxygen.",
 		"speaker": "dave"
 	},
 	"space-suit-drawer": {
@@ -463,7 +463,25 @@ const content = {
 	"storage-drawer-003": {
 		"text": "Oh there is a note!<br>…<br>'Kitchen supplies'<br>How disappointing…",
 		"speaker": "dave"
-	}
+	},
+	"generator-room-newspaper": {
+		"text": "Oh a newspaper..<br>On the front page are five adults in lab coats.<br>The Headline says \"Engineers at Lisa`s Landing celebrate the success of Dave. May 6th, 1991\".",
+		"speaker": "dave"
+	},
+	"generator-room-full-desk": {
+		"text": "There are pens, paper clips and lots of papers scattered on the desk.<br>What a mess!",
+		"speaker": "dave",
+		"buttons": [
+			{
+				"text": "Read sticky note",
+				"action": () => dialog.show('generator-room-sticky-note')
+			}
+		]
+	},
+	"generator-room-sticky-note": {
+		"text": "'User: Gate Keepers'",
+		"speaker": "dave"
+	},
 }
 
 export default content;
