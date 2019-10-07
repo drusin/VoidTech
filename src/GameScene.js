@@ -144,7 +144,6 @@ export default class GameScene extends Scene {
 				const sprite = this.physics.add.sprite(obj.x, obj.y, null);
 				commonSpritePostProcessing(sprite, obj);
 				sprite.depth = -10;
-				console.log(obj);
 				sprite.getData('automatic') ? this.autoTriggers.add(sprite) : this.speechTriggers.add(sprite);
 			}
 			else if (obj.type === "lever") {

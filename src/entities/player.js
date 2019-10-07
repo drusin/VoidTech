@@ -26,8 +26,20 @@ export default class Player {
             repeat: 0
         });
         scene.anims.create({
+            key: 'walkingInSpaceSuit',
+            frames: scene.anims.generateFrameNumbers(PLAYER_TILESET_KEY, { start: 12, end: 15 }),
+            frameRate: 5,
+            repeat: 0
+        });
+        scene.anims.create({
             key: 'standing',
             frames: scene.anims.generateFrameNumbers(PLAYER_TILESET_KEY, { start: 0, end: 0 }),
+            frameRate: 1,
+            repeat: -1
+        });
+        scene.anims.create({
+            key: 'standingInSpaceSuit',
+            frames: scene.anims.generateFrameNumbers(PLAYER_TILESET_KEY, { start: 12, end: 12 }),
             frameRate: 1,
             repeat: -1
         });
@@ -35,14 +47,23 @@ export default class Player {
 
     _updateAnimation() {
         if (this.sprite.body.velocity.x != 0 || this.sprite.body.velocity.y != 0) {
-            this.sprite.anims.play('walking', true);
+            if (this.wearsSpaceSuit) {
+                this.sprite.anims.play('walkingInSpaceSuit', true);
+            }
+            else {
+                this.sprite.anims.play('walking', true);
+            }
 
             // rotate sprite according to body and correct different rotation systems
             this.sprite.rotation = this.sprite.body.angle + Math.PI / 2;
         }
         else {
-            // console.log('set anim to standing')
-            this.sprite.anims.play('standing', true);
+            if (this.wearsSpaceSuit) {
+                this.sprite.anims.play('standingInSpaceSuit', true);
+            }
+            else {
+                this.sprite.anims.play('standing', true);
+            }
         }
     }
 
@@ -82,7 +103,6 @@ export default class Player {
     }
 
     update() {
-        // this._updateMovement();
         this._updateAnimation();
     }
 }
