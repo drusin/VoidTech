@@ -541,6 +541,67 @@ const content = {
 		"text": "You don't have an access-card for the lift anyway. We don't want you to starve to death somewhere on the floor without any chance of recycling the biomass.",
 		"speaker": "lisa",
 		"action": () => dialog.show('replay-video-tape-8')
+	},
+	"bridge-console-001": {
+		"text": "Nothing of interest..",
+		"speaker": "dave"
+	},
+	"bridge-console-002": {
+		"text": "Oh yeah, I totally understand what this console is for.",
+		"speaker": "dave"
+	},
+	"bridge-console-003": {
+		"text": "This one says something about Fluxkompensators",
+		"speaker": "dave"
+	},
+	"bridge-console-004": {
+		"text": `this.physics.world.OVERLAP_BIAS = 1;<br>lightMask.update = () => {<br>
+			lightMask.x = Math.round(32 + this.game.config.width - this.cameras.main.scrollX);<br>
+			lightMask.y = Math.round(96 + this.game.config.height - this.cameras.main.scrollY);<br>
+		}`,
+		"buttons": [
+			{
+				"text": "Aha."
+			}
+		],
+		"speaker": "dave"
+	},
+	"bridge-console-005": {
+		"text": "This is none of my interest",
+		"speaker": "dave"
+	},
+	"bridge-console-006": {
+		"text": "Hmmm... hmmmm...",
+		"speaker": "dave"
+	},
+	"bridge-console-007": {
+		"text": "Remarkable.",
+		"speaker": "dave"
+	},
+	"bridge-console-008": {
+		"text": "Nothing of interest..",
+		"speaker": "dave"
+	},
+	"bridge-console-009": {
+		"text": "Quite a console there!",
+		"speaker": "dave"
+	},
+	"bridge-console-010": {
+		"text": "I think it runs Xunil.",
+		"speaker": "dave"
+	},
+	"bridge-console-011": {
+		"text": "Not really interesting.",
+		"speaker": "dave"
+	},
+	"vhs-room-vhs-terminal": {
+		"text": "alle 4 terminals"
+	},
+	"vhs-room-computer": {
+		"text": "computer"
+	},
+	"vhs-room-vhs-table": {
+		"text": "table with vhs tape on it"
 	}
 }
 
