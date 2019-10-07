@@ -154,8 +154,6 @@ export default class GameScene extends Scene {
 				this.audioAreas.add(sprite);
 			}
 		});
-
-		console.log(this);
 	}
 	
 	create() {
@@ -262,6 +260,5 @@ export default class GameScene extends Scene {
 		stateMachine.update();
 		this.critter.update();
 		this.lightMask.update();
-		console.log(this.critter.sprite.y);
 	}
 }
