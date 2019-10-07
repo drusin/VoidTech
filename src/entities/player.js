@@ -96,6 +96,15 @@ export default class Player {
                 }
             }
         }
+        const breathingSound = this.scene.sounds.heavyBreathing;
+        if (this.wearsSpaceSuit) {
+            if (!breathingSound.isPlaying) {
+                breathingSound.play({loop: false});
+            }
+        }
+        else {
+            breathingSound.stop();
+        }
     }
 
     _isMoving(velocity) {
