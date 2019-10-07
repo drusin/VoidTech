@@ -713,7 +713,8 @@ const content = {
 	},
 	"bedroom-bed-001": {
 		"speaker": "dave",
-		"text": "Good night..."
+		"text": "Good night...",
+		"action": () => stateMachine.player.scene.game.scene.start(CreditsScene.KEY)
 	}
 }
 
