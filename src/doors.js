@@ -67,7 +67,7 @@ const doors = {
     },
     "door-generatorroom": {
         open: false,
-        locked: true,
+        locked: false,
         tiles: [
             [37, 28],
             [38, 28]
@@ -75,7 +75,7 @@ const doors = {
     },
     "door-bridge": {
         open: false,
-        locked: false,
+        locked: true,
         tiles: [
             [15, 17],
             [15, 18]

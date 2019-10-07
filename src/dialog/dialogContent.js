@@ -286,7 +286,7 @@ const content = {
 
 					stateMachine.player.wearsSpaceSuit = true;
 					content["space-suit-drawer"].proxyFor = "space-suit-drawer-empty";
-					lockDoor("door-generatorroom", false);
+					lockDoor("door-bridge", false);
 				}
 			},
 			{
@@ -313,7 +313,7 @@ const content = {
 
 					stateMachine.player.wearsSpaceSuit = false;
 					content["space-suit-drawer"].proxyFor = null;
-					lockDoor("door-generatorroom", true);
+					lockDoor("door-bridge", true);
 				}
 			},
 			{
