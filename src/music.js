@@ -35,6 +35,14 @@ export default class Music {
         this.currentMusicTrack = this.tracks.music3;
     }
 
+    setToSpaceSuitMode() {
+        this.currentMusicTrack.setVolume(0.5);
+    }
+
+    setToNormalMode() {
+        this.currentMusicTrack.setVolume(1.0);
+    }
+
     makeSureCorrectMusicPlays() {
         if (!this.currentMusicTrack.isPlaying) {
             this.tracks.music1.stop();

@@ -323,6 +323,7 @@ const content = {
 					stateMachine.player.wearsSpaceSuit = true;
 					content["space-suit-drawer"].proxyFor = "space-suit-drawer-empty";
 					lockDoor("door-bridge", false);
+					stateMachine.player.scene.music.setToSpaceSuitMode();
 				}
 			},
 			{
@@ -350,6 +351,7 @@ const content = {
 					stateMachine.player.wearsSpaceSuit = false;
 					content["space-suit-drawer"].proxyFor = null;
 					lockDoor("door-bridge", true);
+					stateMachine.player.scene.music.setToNormalMode();
 				}
 			},
 			{
