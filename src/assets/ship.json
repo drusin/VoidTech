@@ -57,7 +57,7 @@
                 {
                  "height":28.1540100441333,
                  "id":10,
-                 "name":"door-001",
+                 "name":"door-oxygen",
                  "rotation":0,
                  "type":"door-trigger",
                  "visible":true,
@@ -68,7 +68,7 @@
                 {
                  "height":28.154,
                  "id":11,
-                 "name":"door-002",
+                 "name":"door-bedroom",
                  "rotation":0,
                  "type":"door-trigger",
                  "visible":true,
@@ -101,7 +101,7 @@
                 {
                  "height":28.154,
                  "id":14,
-                 "name":"door-006",
+                 "name":"door-generatorroom",
                  "rotation":0,
                  "type":"door-trigger",
                  "visible":true,
@@ -112,7 +112,7 @@
                 {
                  "height":47.020735373468,
                  "id":17,
-                 "name":"door-003",
+                 "name":"door-lift",
                  "rotation":0,
                  "type":"door-trigger",
                  "visible":true,
@@ -123,7 +123,7 @@
                 {
                  "height":44.7082401911663,
                  "id":18,
-                 "name":"door-007",
+                 "name":"door-bridge",
                  "rotation":0,
                  "type":"door-trigger",
                  "visible":true,
@@ -169,6 +169,23 @@
                  "width":49.2727272727273,
                  "x":551.454545454545,
                  "y":60.1065324525532
+                }, 
+                {
+                 "height":39.3333333333333,
+                 "id":25,
+                 "name":"bedrrom-drawer",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"bedroom-drawer"
+                        }],
+                 "rotation":0,
+                 "type":"speech-trigger",
+                 "visible":true,
+                 "width":81.3333333333333,
+                 "x":457.333333333333,
+                 "y":145.621683967705
                 }],
          "offsetx":0,
          "offsety":-0.288350634371398,
@@ -284,18 +301,18 @@
          "y":0
         }],
  "nextlayerid":30,
- "nextobjectid":25,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.3",
  "tileheight":16,
  "tilesets":[
         {
-         "columns":2,
+         "columns":1,
          "firstgid":1,
          "image":"door.png",
-         "imageheight":16,
-         "imagewidth":32,
+         "imageheight":32,
+         "imagewidth":16,
          "margin":0,
          "name":"door",
          "spacing":0,

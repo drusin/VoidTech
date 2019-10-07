@@ -30,6 +30,9 @@ class Dialog {
         }
         stateMachine.setState(STATES.dialog);
         this.currentDialog = dialogContent[key];
+        while (this.currentDialog.proxyFor) {
+            this.currentDialog = dialogContent[this.currentDialog.proxyFor];
+        }
         this.trigger = trigger;
         this.dialogText.innerHTML = this.currentDialog.text;
         this.dialogContainer.style.display = 'block';

@@ -1,7 +1,8 @@
 import dialog from './dialog.js';
 import stateMachine from '../stateMachine';
+import { lockDoor } from '../doors.js';
 
-export default {
+const content = {
     "speech-001": {
         "text": "Hello Dave!<br>2nd line<br>3rd line<br>4 line<br>5th line",
         "speaker": "lisa",
@@ -44,7 +45,8 @@ export default {
         "text": "OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!",
         "speaker": "lisa",
         "action": (trigger) => {
-            trigger.setData('action', 'pc-bedroom2');
+			trigger.setData('action', 'pc-bedroom2');
+			lockDoor('door-oxygen', false);
             dialog.show('speech-oxygen-level-low-1');
         }
     },
@@ -92,7 +94,24 @@ export default {
 	},
 	"speech-fix-leak-4": {
 		"text": "Yes. Please deal with the leak, Dave.",
+		"action": () => content['bedroom-drawer'].proxyFor = 'bedroom-drawer-001',
 		"speaker": "lisa"
+	},
+	"bedroom-drawer": {
+		"text": "I don't have time for this right now.",
+		"speaker": "dave"
+	},
+	"bedroom-drawer-001": {
+		"text": "A picure and a roll of duct tape...",
+		"speaker": "dave",
+		"buttons": [
+			{
+				"text": "Look at the picture",
+			},
+			{
+				"text": "Take the duct tape"
+			}
+		]
 	},
 	"speech-fixed-leak": {
 		"text": "Thanks Dave. Now we need to get the generators up and running.",
@@ -175,3 +194,5 @@ export default {
 		"speaker": "dave"
 	}
 }
+
+export default content;

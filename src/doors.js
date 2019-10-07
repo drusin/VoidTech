@@ -25,25 +25,23 @@ function setToClosedDoorTile(x, y) {
 }
 
 const doors = {
-    "door-001": {
+    "door-oxygen": {
         open: false,
         tiles: [
             [37, 8],
             [38, 8]
         ],
-        locked: false,
-        lockedDialog: "speech-door-001-locked", // Dialog that pops up if the door is locked
-        alreadySeenLockedDialog: false // Prevents showing the dialog over and over again while still standing on the trigger tile. Will be reset after leaving the door-trigger
+        locked: true
     },
-    "door-002": {
+    "door-bedroom": {
         open: false,
-        locked: false,
+        locked: true,
         tiles: [
             [28, 15],
             [29, 15]
         ]
     },
-    "door-003": {
+    "door-lift": {
         open: false,
         locked: true,
         tiles: [
@@ -67,7 +65,7 @@ const doors = {
             [20, 20]
         ]
     },
-    "door-006": {
+    "door-generatorroom": {
         open: false,
         locked: false,
         tiles: [
@@ -75,7 +73,7 @@ const doors = {
             [38, 28]
         ]
     },
-    "door-007": {
+    "door-bridge": {
         open: false,
         locked: false,
         tiles: [
@@ -87,6 +85,10 @@ const doors = {
 
 function playSoundEffect() {
     stateMachine.player.scene.sounds.doorSwoosh1.play({volume: 0.1});
+}
+
+export function lockDoor(name, locked) {
+    doors[name].locked = locked;
 }
 
 export function ensureDoorOpen(identifier) {
