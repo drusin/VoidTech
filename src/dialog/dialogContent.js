@@ -230,13 +230,16 @@ const content = {
 		"speaker": "lisa",
 		"buttons": [
 			{
-				"text": "O-O-O O-O&nbsp&nbsp&nbsp<br>&nbsp| | | |&nbsp&nbsp<br>&nbsp&nbspO O-O O-OO"
+				"text": "O-O-O O-O&nbsp&nbsp&nbsp<br>&nbsp| | | |&nbsp&nbsp<br>&nbsp&nbspO O-O O-OO",
+				"action": () => dialog.show('generator-console-circuit-wrong-001')
 			},
 			{
-				"text": "O-O O&nbspO-O&nbsp&nbsp&nbsp<br>&nbsp| &nbsp | |&nbsp&nbsp<br>&nbsp&nbspO-O-O O-OO"
+				"text": "O-O O&nbspO-O&nbsp&nbsp&nbsp<br>&nbsp| &nbsp | |&nbsp&nbsp<br>&nbsp&nbspO-O-O O-OO",
+				"action": () => dialog.show('generator-console-circuit-correct-001')
 			},
 			{
-				"text": "O-O-O-O-O&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbspO-O-O-O-OO"
+				"text": "O-O-O-O-O&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbspO-O-O-O-OO",
+				"action": () => dialog.show('generator-console-circuit-wrong-001')
 			},
 		]
 	},
