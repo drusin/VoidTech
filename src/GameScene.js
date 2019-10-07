@@ -130,7 +130,10 @@ export default class GameScene extends Scene {
 			}
 		}
 
-		tilemap.getObjectLayer('objects').objects.forEach(obj => {
+		const objectsLayer1 = tilemap.getObjectLayer('objects').objects;
+		const objectsLayer2 = tilemap.getObjectLayer('otherObjects').objects;
+		const objects = objectsLayer1.concat(objectsLayer2)
+		objects.forEach(obj => {
 			if (obj.type === "door-trigger") {
 				const sprite = this.physics.add.sprite(obj.x, obj.y, null);
 				commonSpritePostProcessing(sprite, obj);

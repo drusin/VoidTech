@@ -9,6 +9,7 @@ export default class Player {
         this.cursorkeys = scene.input.keyboard.createCursorKeys();
         this.dialogs = scene.Dialog;
         this.scene = scene;
+        this.wearsSpaceSuit = false;
     }
 
     createAnimations(scene) {

@@ -220,6 +220,42 @@ const content = {
 	"speech-door-001-locked": {
 		"text": "TODO: This door seems to be locked because on the other side is no oxigen.",
 		"speaker": "dave"
+	},
+	"space-suit-drawer": {
+		"text": "TODO: Oh a space suit",
+		"speaker": "dave",
+		"buttons": [
+            {
+                "text": "Put it on",
+                "action": () => {
+					console.log('anziehanimation');
+					stateMachine.player.wearsSpaceSuit = true;
+					content["space-suit-drawer"].proxyFor = "space-suit-drawer-empty";
+					lockDoor("door-generatorroom", false);
+				}
+			},
+			{
+				"text": "Better leave it there"
+			}
+        ]
+	},
+	"space-suit-drawer-empty": {
+		"text": "TODO: the drawer i got the spacesuit from",
+		"speaker": "dave",
+		"buttons": [
+			{
+                "text": "Put it out",
+                "action": () => {
+					console.log('ausziehanimation');
+					stateMachine.player.wearsSpaceSuit = false;
+					content["space-suit-drawer"].proxyFor = null;
+					lockDoor("door-generatorroom", true);
+				}
+			},
+			{
+				"text": "I'll better leave"
+			}
+        ]
 	}
 }
 
