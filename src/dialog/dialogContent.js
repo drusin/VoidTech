@@ -365,6 +365,11 @@ const content = {
 		"text": "That is not important. I can hear you because I created you. You’re working for me.",
 		"speaker": "lisa"
 		},
+
+	"critter-001": {
+		"text": "I am no touching this with a 10 foot pole...",
+		"speaker": "dave"
+	},
 	"speech-oxygen-level-low-again-6": {	
 		"text": "I do want to survive. And who knows maybe I’m not alone here…",
 		"speaker": "dave"

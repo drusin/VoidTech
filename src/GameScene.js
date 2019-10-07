@@ -237,7 +237,12 @@ export default class GameScene extends Scene {
 		this.physics.add.collider(this.player.sprite, this.animatedLayer);
 
 		this.critter = new Critter(this);
-		this.critterCollider = this.physics.add.collider(this.critter.sprite, this.player.sprite);
+		this.critterCollider = this.physics.add.collider(this.critter.sprite, this.player.sprite, (left, right) => {
+			const player = left === this.player.sprite ? left : right;
+			player.y = 98;
+			player.anims.play('standing', true)
+			dialog.show('critter-001');
+		});
 		this.critter.sprite.visible = false;
 		this.critterCollider.active = false;
 
