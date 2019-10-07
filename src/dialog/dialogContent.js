@@ -274,6 +274,15 @@ const content = {
 				"text": "I'll better leave"
 			}
         ]
+	},
+	"storage-drawer-001": {
+		"text": "TODO: nothing of interest1"
+	},
+	"storage-drawer-002": {
+		"text": "TODO: nothing of interest2"
+	},
+	"storage-drawer-003": {
+		"text": "TODO: nothing of interest3"
 	}
 }
 
