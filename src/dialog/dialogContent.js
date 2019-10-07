@@ -625,7 +625,10 @@ const content = {
 	"vhs-room-computer": {
 		"text": "computer"
 	},
-	"vhs-room-vhs-table": {
+	"vhs-room-vhs-table": {	
+		"proxyFor": "no-time-for-this"
+	},
+	"vhs-room-in-the-end": {
 		"text": "A video-tape... the label says 'Dave05061991'",
 		"speaker": "dave",
 		"buttons": [
