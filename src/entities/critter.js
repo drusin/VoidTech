@@ -3,10 +3,11 @@ export const CRITTER_KEY = 'critter';
 
 export default class Critter {
 	constructor(scene) {
-        this.sprite = scene.physics.add.sprite(582, 50, CRITTER_KEY);
+        this.sprite = scene.physics.add.staticSprite(582, 50, CRITTER_KEY);
         this.sprite.setSize(16, 16);
         this.createAnimations(scene);
         this.scene = scene;
+        window.critter = this;
     }
 
     createAnimations(scene) {

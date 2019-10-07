@@ -188,7 +188,7 @@
                  "y":145.621683967705
                 }, 
                 {
-                 "height":12.25,
+                 "height":18.75,
                  "id":26,
                  "name":"leek",
                  "properties":[
@@ -940,7 +940,7 @@
  "nextobjectid":57,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.2.4",
+ "tiledversion":"1.2.3",
  "tileheight":16,
  "tilesets":[
         {

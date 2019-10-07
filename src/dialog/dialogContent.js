@@ -328,6 +328,7 @@ const content = {
 			stateMachine.player.scene.setLightmask('full-lights-pipe-broken');
 			stateMachine.player.scene.brokenPipesLayer.visible = true;
 			stateMachine.player.scene.critter.sprite.visible = true;
+
 			setTimeout(() => dialog.show('speech-oxygen-level-low-again-1'), 10000);
 		}
 	},
@@ -341,19 +342,23 @@ const content = {
 		},
 	"speech-oxygen-level-low-again-1": {
 		"text": "Dave, the oxygen levels have fallen again. Didn’t you fix the leak before?",
-		"speaker": "lisa"
+		"speaker": "lisa",
+		"action": () => dialog.show('speech-oxygen-level-low-again-2')
 		},
 	"speech-oxygen-level-low-again-2": {	
 		"text": "Yes, I did! I’ll check what’s going on…What could be causing the leak?",
-		"speaker": "dave"
+		"speaker": "dave",
+		"action": () => dialog.show('speech-oxygen-level-low-again-3')
 		},
 	"speech-oxygen-level-low-again-3": {	
 		"text": "Oxygen is vital to our survival. Check the oxygen supply room to find out what’s happening.",
-		"speaker": "lisa"
+		"speaker": "lisa",
+		"action": () => dialog.show('speech-oxygen-level-low-again-4')
 		},
 	"speech-oxygen-level-low-again-4": {	
 		"text": "Yes, you’ve said that before. Vital to our survival. Who even are you? And why can you hear me think?",
-		"speaker": "dave"
+		"speaker": "dave",
+		"action": () => dialog.show('speech-oxygen-level-low-again-5')
 		},
 	"speech-oxygen-level-low-again-5": {	
 		"text": "That is not important. I can hear you because I created you. You’re working for me.",

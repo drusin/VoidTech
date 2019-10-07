@@ -236,9 +236,11 @@ export default class GameScene extends Scene {
 		this.physics.add.collider(this.player.sprite, this.animatedLayer);
 
 		this.critter = new Critter(this);
+		this.physics.add.collider(this.critter.sprite, this.player.sprite);
 		this.critter.sprite.visible = false;
 
 		this.initializeObjects(map);
+
 
 		dialog.init(this.Dialog, this, this.player);
 		stateMachine.init(this.player);
@@ -297,5 +299,6 @@ export default class GameScene extends Scene {
 		stateMachine.update();
 		this.critter.update();
 		this.lightMask.update();
+		console.log(this.critter.sprite.y);
 	}
 }
