@@ -600,6 +600,22 @@ const content = {
 	},
 	"vhs-room-vhs-table": {
 		"text": "table with vhs tape on it"
+	},
+	"bedroom-drawer-002": {
+		"text": "Just old books and other things that would normally collect dust.",
+		"speaker": "dave"
+	},
+	"hallway-drawer": {
+		"text": "I don't know what THAT is.",
+		"speaker": "dave"
+	},
+	"hallway-table": {
+		"text": "An empty table. Interesting…",
+		"speaker": "dave"
+	},
+	"storage-room-table": {
+		"text": "Absolutely nothing on the table.",
+		"speaker": "dave"
 	}
 }
 
