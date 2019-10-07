@@ -8,6 +8,9 @@ import door from './assets/door.png'
 import assets from './assets/Assets.png'
 import lever from './assets/lever.png'
 import lights from './assets/Lights.png'
+import furniture from './assets/Furniture.png'
+import bigAssets from './assets/Big-assets.png'
+import smallAssets from './assets/Small-assets.png'
 import AnimatedTiles from 'phaser-animated-tiles/dist/AnimatedTiles.min.js';
 
 import lightSwitchSound from './assets/sounds/Okt. 06, 830873-light-switch.ogg';
@@ -60,6 +63,18 @@ export default class GameScene extends Scene {
 		);
 		this.load.spritesheet('lights',
 			lights,
+			{ frameWidth: 16, frameHeight: 16 }
+		);
+		this.load.spritesheet('smallAssets',
+			smallAssets,
+			{ frameWidth: 16, frameHeight: 16 }
+		);
+		this.load.spritesheet('bigAssets',
+			bigAssets,
+			{ frameWidth: 16, frameHeight: 16 }
+		);
+		this.load.spritesheet('furniture',
+			furniture,
 			{ frameWidth: 16, frameHeight: 16 }
 		);
 		this.load.scenePlugin('animatedTiles', AnimatedTiles, 'animatedTiles', 'animatedTiles');
@@ -138,14 +153,25 @@ export default class GameScene extends Scene {
 		const animatedTileset = map.addTilesetImage('Assets', 'assets');
 		const lightsTileset = map.addTilesetImage('Lights', 'lights');
 		const doorTileset = map.addTilesetImage('door');
+		const furnitureTileset = map.addTilesetImage('Furniture', 'furniture');
+		const smallAssetsTileset = map.addTilesetImage('Small-assets', 'smallAssets');
+		const bigAssetsTileset = map.addTilesetImage('Big-assets', 'bigAssets');
+
 		this.walkableLayer = map.createStaticLayer('floor', tileset, 0, 0);
+		
 		const wallLayer = map.createStaticLayer('walls', tileset, 0, 0);
 		wallLayer.setCollisionBetween(1, 999);
+		const furnitureLayer = map.createStaticLayer('furniture', furnitureTileset, 0, 0);
+		furnitureLayer.setCollisionBetween(1, 999);
+
 		this.doorLayer = map.createDynamicLayer('doors', doorTileset, 0, 0);
 		this.doorLayer.setCollisionByProperty({ closed: true });
 		this.animatedLayer = map.createDynamicLayer('animated', animatedTileset, 0, 0);
 		this.animatedLayer.setCollisionBetween(1, 999);
 		this.lampLayer = map.createDynamicLayer('lamps', lightsTileset, 0, 0);
+		this.smallAssetsLayer = map.createDynamicLayer('small-assets', smallAssetsTileset, 0, 0);
+		this.bigAssetsLayer = map.createDynamicLayer('big-assets', bigAssetsTileset, 0, 0);
+
 
 		this.emergencyLightsBedroomLayer = map.createDynamicLayer('emergency-lights-bedroom', lightsTileset, 0, 0);
 		this.emergencyLightsBedroomLayer.visible = false;
@@ -154,6 +180,7 @@ export default class GameScene extends Scene {
 
 		this.player = new Player(this);
 		this.physics.add.collider(this.player.sprite, wallLayer);
+		this.physics.add.collider(this.player.sprite, this.furnitureLayer);
 		this.physics.add.collider(this.player.sprite, this.doorLayer);
 		this.physics.add.collider(this.player.sprite, this.animatedLayer);
 
