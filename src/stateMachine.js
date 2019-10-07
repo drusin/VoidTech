@@ -99,7 +99,17 @@ class StateMachine {
         }
 
         this.player._updateWalkingSound();
+        if (this.player.wearsSpaceSuit) {
+            this._correctSpaceSuitMovementSpeed();
+        }
         this._correctDiagonalMovementSpeed();
+    }
+
+    _correctSpaceSuitMovementSpeed() {
+        const SPACE_SUIT_SPEED_MULTIPLIER = 0.5;
+        const velocity = this.player.sprite.body.velocity;
+        this.player.sprite.body.setVelocityX(velocity.x * SPACE_SUIT_SPEED_MULTIPLIER);
+        this.player.sprite.body.setVelocityY(velocity.y * SPACE_SUIT_SPEED_MULTIPLIER);
     }
 
     _correctDiagonalMovementSpeed() {
