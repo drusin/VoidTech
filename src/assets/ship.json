@@ -151,7 +151,7 @@
                 {
                  "height":24,
                  "id":24,
-                 "name":"leak",
+                 "name":"leak-first-time",
                  "properties":[
                         {
                          "name":"action",
@@ -186,6 +186,23 @@
                  "width":81.3333333333333,
                  "x":457.333333333333,
                  "y":145.621683967705
+                }, 
+                {
+                 "height":12.25,
+                 "id":26,
+                 "name":"leek",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"repair-leak-generic"
+                        }],
+                 "rotation":0,
+                 "type":"speech-trigger",
+                 "visible":true,
+                 "width":19.75,
+                 "x":574.75,
+                 "y":44.0383506343714
                 }],
          "offsetx":0,
          "offsety":-0.288350634371398,
@@ -301,7 +318,7 @@
          "y":0
         }],
  "nextlayerid":30,
- "nextobjectid":26,
+ "nextobjectid":27,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.3",

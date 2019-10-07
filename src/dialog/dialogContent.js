@@ -97,7 +97,22 @@ const content = {
 		"action": () => content['bedroom-drawer'].proxyFor = 'bedroom-drawer-001',
 		"speaker": "lisa"
 	},
+	"repair-leak-generic": {
+		"text": "I need something to fix this up.",
+		"speaker": "dave"
+	},
+	"repair-leak-ducttape": {
+		"text": "This shall do...",
+		"speaker": "dave",
+		"action": () => {
+			stateMachine.player.scene.brokenPipesLayer.visible = false;
+			dialog.show('speech-fixed-leak');
+		}
+	},
 	"bedroom-drawer": {
+		"proxyFor": "no-time-for-this"
+	},
+	"no-time-for-this": {
 		"text": "I don't have time for this right now.",
 		"speaker": "dave"
 	},
@@ -107,14 +122,27 @@ const content = {
 		"buttons": [
 			{
 				"text": "Look at the picture",
+				"action": () => dialog.show('no-time-for-this')
 			},
 			{
-				"text": "Take the duct tape"
+				"text": "Take the duct tape",
+				"action": () => dialog.show('bedroom-drawer-took-ductape')
 			}
 		]
 	},
+	"bedroom-drawer-took-ductape": {
+		"text": "This will be useful.",
+		"speaker": "dave",
+		"action": () => content['repair-leak-generic'].proxyFor = 'repair-leak-ducttape'
+	},
 	"speech-fixed-leak": {
-		"text": "Thanks Dave. Now we need to get the generators up and running.",
+		"text": "Thanks Dave. Now we need to get the generators up and running.<br>Please follow the emergency lights to the generator room.",
+		"action": () => {
+			stateMachine.player.scene.emergencyLightsBedroomLayer.visible = true;
+			lockDoor('door-bedroom', false);
+			lockDoor('door-004', false);
+			lockDoor('door-generatorroom', false);
+		},
 		"speaker": "lisa"
 	},
 	"speech-fix-generators-1": {
