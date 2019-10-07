@@ -4,6 +4,7 @@ import mapJson from './assets/ship.json';
 import tiles from './assets/Tiles.png';
 import lightmap from './assets/lightmap.png';
 import player_acting from './assets/Dave acting.png'
+import critter_eating from './assets/Critter.png'
 import door from './assets/door.png'
 import assets from './assets/Assets.png'
 import lever from './assets/lever.png'
@@ -25,7 +26,9 @@ import generatorNoise1 from './assets/sounds/Okt. 07, 830680-generator-noise.ogg
 import generatorNoise2 from './assets/sounds/Okt. 07, 128891-generator-noise-alternative.ogg';
 
 import { PLAYER_TILESET_KEY } from './entities/player.js';
+import { CRITTER_KEY } from './entities/critter.js';
 import Player from './entities/player.js';
+import Critter from './entities/critter.js';
 
 import dialog from './dialog/dialog.js';
 
@@ -48,6 +51,10 @@ export default class GameScene extends Scene {
 		this.load.spritesheet(PLAYER_TILESET_KEY,
 			player_acting,
 			{ frameWidth: 32, frameHeight: 32 }
+		);
+		this.load.spritesheet(CRITTER_KEY,
+			critter_eating,
+			{ frameWidth: 16, frameHeight: 16 }
 		);
 		this.load.spritesheet('assets',
 			assets,
@@ -185,6 +192,8 @@ export default class GameScene extends Scene {
 		this.physics.add.collider(this.player.sprite, this.doorLayer);
 		this.physics.add.collider(this.player.sprite, this.animatedLayer);
 
+		this.critter = new Critter(this);
+
 		this.initializeObjects(map);
 
 		dialog.init(this.Dialog, this, this.player);
@@ -221,6 +230,7 @@ export default class GameScene extends Scene {
 	update(time, delta) {
 		stateMachine.update();
 		this.player.update();
+		this.critter.update();
 		this.lightMask.update();
 	}
 }
