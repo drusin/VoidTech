@@ -46,6 +46,7 @@ import lightmap_full_lights_no_pipe from './assets/Lights/full-lights-pipe-broke
 import lightmap_full_lights from './assets/Lights/full-lights.png';
 
 import Music from './music.js';
+import { runInThisContext } from 'vm';
 
 export default class GameScene extends Scene {
 	constructor() {
@@ -236,8 +237,9 @@ export default class GameScene extends Scene {
 		this.physics.add.collider(this.player.sprite, this.animatedLayer);
 
 		this.critter = new Critter(this);
-		this.physics.add.collider(this.critter.sprite, this.player.sprite);
+		this.critterCollider = this.physics.add.collider(this.critter.sprite, this.player.sprite);
 		this.critter.sprite.visible = false;
+		this.critterCollider.active = false;
 
 		this.initializeObjects(map);
 
