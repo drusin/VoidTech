@@ -138,7 +138,7 @@ const content = {
 	"speech-fixed-leak": {
 		"text": "Thanks Dave. Now we need to get the generators up and running.<br>Please follow the emergency lights to the generator room.",
 		"action": () => {
-			stateMachine.player.scene.emergencyLightsBedroomLayer.visible = true;
+			stateMachine.player.scene.emergencyLightsGeneratorLayer.visible = true;
 			lockDoor('door-bedroom', false);
 			lockDoor('door-004', false);
 			lockDoor('door-generatorroom', false);

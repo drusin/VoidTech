@@ -202,6 +202,9 @@ export default class GameScene extends Scene {
 		this.emergencyLightsBedroomLayer = map.createDynamicLayer('emergency-lights-bedroom', lightsTileset, 0, 0);
 		this.emergencyLightsBedroomLayer.visible = false;
 
+		this.emergencyLightsGeneratorLayer = map.createDynamicLayer('emergency-lights-generator', lightsTileset, 0, 0);
+		this.emergencyLightsGeneratorLayer.visible = false;
+
         this.sys.animatedTiles.init(map);
 
 		this.player = new Player(this);
