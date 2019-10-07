@@ -34,7 +34,11 @@ export default {
     },
 	"speech-awakening": {
         "text": "Where am I? I don’t remember anything…<br>Hello? Anybody there?<br>Maybe the computer can give me some answers.",
-        "speaker": "dave"
+		"speaker": "dave",
+		"action": () => { 
+			stateMachine.player.scene.daveLying.visible = false;
+			stateMachine.player.sprite.visible = true;
+		}
     },
     "pc-bedroom": {
         "text": "OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!",
@@ -73,10 +77,21 @@ export default {
     },
 	"speech-fix-leak-1": {
 		"text": "One of the pipes seems to have a leak. I need to find something to cover the hole.",
-		"speaker": "dave"
-		},
+		"speaker": "dave",
+		"action": () => dialog.show('speech-fix-leak-2')
+	},
 	"speech-fix-leak-2": {
 		"text": "Why don’t you look in the cabinet next to the computer for something useful?",
+		"speaker": "lisa",
+		"action": () => dialog.show('speech-fix-leak-3')
+	},
+	"speech-fix-leak-3": {
+		"text": "Wait, you can hear me?",
+		"speaker": "dave",
+		"action": () => dialog.show('speech-fix-leak-4')
+	},
+	"speech-fix-leak-4": {
+		"text": "Yes. Please deal with the leak, Dave.",
 		"speaker": "lisa"
 	},
 	"speech-fixed-leak": {

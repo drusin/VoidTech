@@ -4,6 +4,7 @@ import mapJson from './assets/ship.json';
 import tiles from './assets/Tiles.png';
 import lightmap from './assets/lightmap.png';
 import player_acting from './assets/Dave acting.png'
+import daveLying from './assets/Dave-lying.png'
 import critter_eating from './assets/Critter.png'
 import door from './assets/door.png'
 import assets from './assets/Assets.png'
@@ -33,6 +34,8 @@ import Critter from './entities/critter.js';
 import dialog from './dialog/dialog.js';
 
 import stateMachine from './stateMachine.js';
+
+import constants from './constants.js';
 
 export default class GameScene extends Scene {
 	constructor() {
@@ -88,6 +91,8 @@ export default class GameScene extends Scene {
 		
 		this.load.image('lightmap', lightmap);
 
+		this.load.image('dave-lying', daveLying);
+
 		this.load.audio('light-switch-1', lightSwitchSound);
 		this.load.audio('light-switch-2', lightSwitchSoundAlternative);
 		this.load.audio('walking-wood-1', walkingWood1);
@@ -105,6 +110,13 @@ export default class GameScene extends Scene {
 		this.doorTriggers = this.physics.add.group();
 		this.levers = this.physics.add.group();
 		this.audioAreas = this.physics.add.group();
+
+		this.autoTriggers = this.physics.add.group();
+		this.physics.add.overlap(this.player.sprite, this.autoTriggers, (left, right) => {
+			const trigger = left === this.player.sprite ? right : left;
+			dialog.show(trigger.getData("action"));
+			trigger.destroy();
+		})
 
 		const commonSpritePostProcessing = (sprite, obj) => {
 			sprite.setDisplaySize(obj.width, obj.height);
@@ -129,7 +141,8 @@ export default class GameScene extends Scene {
 				const sprite = this.physics.add.sprite(obj.x, obj.y, null);
 				commonSpritePostProcessing(sprite, obj);
 				sprite.depth = -10;
-				this.speechTriggers.add(sprite);
+				console.log(obj);
+				sprite.getData('automatic') ? this.autoTriggers.add(sprite) : this.speechTriggers.add(sprite);
 			}
 			else if (obj.type === "lever") {
 				// a freaking 8 year old bug in tiled drove me mad…
@@ -149,6 +162,8 @@ export default class GameScene extends Scene {
 				this.audioAreas.add(sprite);
 			}
 		});
+
+		console.log(this);
 	}
 	
 	create() {
@@ -193,6 +208,7 @@ export default class GameScene extends Scene {
 		this.physics.add.collider(this.player.sprite, this.animatedLayer);
 
 		this.critter = new Critter(this);
+		this.critter.sprite.visible = false;
 
 		this.initializeObjects(map);
 
@@ -223,6 +239,16 @@ export default class GameScene extends Scene {
 		this.sounds.doorSwoosh1 = this.sound.add('door-swoosh-1');
 		this.sounds.oxygen = this.sound.add('oxygen');
 		this.sounds.generatorNoise = this.sound.add('generator-noise-2');
+
+		this.daveLying = this.make.sprite({
+			key: 'dave-lying',
+			x: constants.START_X,
+			y: constants.START_Y,
+		});
+		this.daveLying.scaleX = 0.25;
+		this.daveLying.scaleY = 0.25;
+
+		this.player.sprite.visible = false;
 
 		dialog.show('speech-awakening');
 	}

@@ -1,10 +1,9 @@
-const START_X = 550;
-const START_Y = 180;
 export const PLAYER_TILESET_KEY = 'chara';
+import constants from '../constants.js';
 
 export default class Player {
 	constructor(scene) {
-        this.sprite = scene.physics.add.sprite(START_X, START_Y, PLAYER_TILESET_KEY);
+        this.sprite = scene.physics.add.sprite(constants.START_X, constants.START_Y, PLAYER_TILESET_KEY);
         this.sprite.setSize(16, 16);
         this.createAnimations(scene);
         this.cursorkeys = scene.input.keyboard.createCursorKeys();

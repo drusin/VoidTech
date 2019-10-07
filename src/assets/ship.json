@@ -147,6 +147,28 @@
                  "width":12.6666666666666,
                  "x":414,
                  "y":145.621683967705
+                }, 
+                {
+                 "height":24,
+                 "id":24,
+                 "name":"leak",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"speech-fix-leak-1"
+                        }, 
+                        {
+                         "name":"automatic",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"speech-trigger",
+                 "visible":true,
+                 "width":49.2727272727273,
+                 "x":551.454545454545,
+                 "y":60.1065324525532
                 }],
          "offsetx":0,
          "offsety":-0.288350634371398,
@@ -261,8 +283,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":28,
- "nextobjectid":24,
+ "nextlayerid":30,
+ "nextobjectid":25,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.2.3",
