@@ -241,12 +241,78 @@ const content = {
 				"text": "O-O-O-O-O&nbsp&nbsp&nbsp<br>&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp<br>&nbsp&nbspO-O-O-O-OO",
 				"action": () => dialog.show('generator-console-circuit-wrong-001')
 			},
+			{
+				"text": "Cancel"
+			}
 		]
+	},
+	"generator-console-circuit-wrong-001": {
+		"text": "System restart imminent.",
+		"speaker": "lisa",
+		"action": () => {
+			stateMachine.generatorsOn = true;
+			stateMachine.player.scene.generatorsOffLayer.visible = false;
+			dialog.show('generator-console-circuit-wrong-002');
+		}
+	},
+	"generator-console-circuit-wrong-002": {
+		"speaker": "lisa",
+		"text": "Powering on generators, please stand by...",
+		"action": () => dialog.show('generator-console-circuit-wrong-003')
+	},
+	"generator-console-circuit-wrong-003": {
+		"speaker": "lisa",
+		"text": "Running stress tests...",
+		"action": () => {
+			stateMachine.player.scene.generatorBrokenLayer.visible = true;
+			stateMachine.generatorsOn = false;
+			dialog.show('generator-console-circuit-wrong-004');
+		}
+	},
+	"generator-console-circuit-wrong-004": {
+		"speaker": "lisa",
+		"text": "Critical error, shutting down generators.",
+		"action": () => {
+			stateMachine.player.scene.generatorsOffLayer.visible = true;
+			dialog.show('generator-console-circuit-wrong-005')
+		}
+	},
+	"generator-console-circuit-wrong-005": {
+		"speaker": "lisa",
+		"text": "Please make sure to use the correct configuration, Dave.<br>We don't want this room to explode."
+	},
+	"generator-console-circuit-correct-001": {
+		"text": "System restart imminent.",
+		"speaker": "lisa",
+		"action": () => {
+			stateMachine.generatorsOn = true;
+			stateMachine.player.scene.generatorsOffLayer.visible = false;
+			dialog.show('generator-console-circuit-correct-002');
+		}
+	},
+	"generator-console-circuit-correct-002": {
+		"speaker": "lisa",
+		"text": "Powering on generators, please stand by...",
+		"action": () => dialog.show('generator-console-circuit-correct-003')
+	},
+	"generator-console-circuit-correct-003": {
+		"speaker": "lisa",
+		"text": "Running stress tests...",
+		"action": () => {
+			stateMachine.player.scene.generatorBrokenLayer.visible = true;
+			stateMachine.generatorsOn = false;
+			dialog.show('generator-console-circuit-correct-004');
+		}
+	},
+	"generator-console-circuit-correct-004": {
+		"speaker": "lisa",
+		"text": "The generators appear to be working in an orderly fashion",
+		"action": () => alert('turn on the light now')
 	},
 	"speech-photograph-1": {
 		"text": "I wonder who they are… They look so happy. Did they used to work here?",
 		"speaker": "dave"
-		},
+	},
 	"speech-photograph-2": {
 		"text": "That is not important to your current task. The generators should now power on.",
 		"speaker": "lisa"
