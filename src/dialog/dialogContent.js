@@ -148,21 +148,33 @@ const content = {
 		"speaker": "lisa"
 	},
 	"speech-fix-generators-1": {
-		"text": "The generator is losing coolant fluid. The coolant temperature cannot reach maximum level.",
-		"speaker": "lisa"
+		"text": "One of the generators is losing coolant fluid.<br>The coolant temperature cannot reach maximum level.",
+		"speaker": "lisa",
+		"action": () => dialog.show('speech-fix-generators-2')
 		},
 	"speech-fix-generators-2": {
 		"text": "If it’s losing coolant fluid, then there must be a leak somewhere.",
-		"speaker": "dave"
+		"speaker": "dave",
+		"action": () => dialog.show('speech-fix-generators-3')
 		},
 	"speech-fix-generators-3": {
-		"text": "The generators are the source of power for the entire control system. We should prevent a generator outage from happening again. <br> The circuit breakers should be checked.",
-		"speaker": "lisa"
+		"text": "The generators are the source of power for the entire control system.<br>We should prevent a generator outage from happening again.<br>Please locate the faulty generator.",
+		"speaker": "lisa",
+		"action": () => content["faulty-generator"].proxyFor = "faulty-generator-001"
 		},
+	"faulty-generator": {
+		"proxyFor": "no-time-for-this"
+	},
+	"faulty-generator-001": {
+		"text": "This one is broken. Lisa, can we somehow cut this generator from the grid?",
+		"speaker": "dave",
+		"action": () => dialog.show('speech-fix-generators-4')
+	},
 	"speech-fix-generators-4": {
-		"text": "Looks like the circuit was overloaded and shut down. I wonder what caused this much damage…<br> I’ll redistribute the generators to avoid power surges in the future.",
-		"speaker": "dave"
-		},
+		"text": "I have enabled the generator circuit setup.<br>Using the console, you should be able to cut this generator off.",
+		"speaker": "lisa",
+		"action": () => content['generator-console'].proxyFor = 'generator-console-001'
+	},
 	"entered-generator-room": {
 		"speaker": "lisa",
 		"text": "At the end of the room there is a console. Use it to restart the generators"
@@ -173,7 +185,21 @@ const content = {
 		"buttons": [
 			{
 				"text": "Power on",
-				"action": () => dialog.show('powering-on-generators-001')
+				"action": () => {
+					stateMachine.generatorsOn = true;
+					stateMachine.player.scene.generatorsOffLayer.visible = false;
+					dialog.show('powering-on-generators-001');
+				}
+			},
+		]
+	},
+	"generator-console-001": {
+		"text": "Generator control console",
+		"speaker": "lisa",
+		"buttons": [
+			{
+				"text": "Circuit setup",
+				"action": () => dialog.show('generator-console-circuit-menu')
 			},
 		]
 	},
@@ -186,13 +212,18 @@ const content = {
 		"speaker": "lisa",
 		"text": "Running stress tests...",
 		"action": () => {
+			stateMachine.player.scene.generatorBrokenLayer.visible = true;
+			stateMachine.generatorsOn = false;
 			dialog.show('powering-on-generators-003');
 		}
 	},
 	"powering-on-generators-003": {
 		"speaker": "lisa",
 		"text": "Critical error, shutting down generators.",
-		// "action": () => dialog.show('powering-on-generators-002')
+		"action": () => {
+			stateMachine.player.scene.generatorsOffLayer.visible = true;
+			dialog.show('speech-fix-generators-1')
+		}
 	},
 	"generator-console-circuit-menu": {
 		"text": "Choose the circuit to use",

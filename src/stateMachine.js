@@ -17,6 +17,7 @@ class StateMachine {
     init (player) {
         this.player = player;
         this.state = STATES.normal;
+        this.generatorsOn = false;
     }
 
     setState(state) {
@@ -33,6 +34,7 @@ class StateMachine {
                 break;
             case STATES.dialog:
                 this.updateDialog();
+                this.updateAreaSounds();
                 break;
             case STATES.cutScene:
                 // do nothing and wait till cutscene is over
@@ -43,7 +45,7 @@ class StateMachine {
         const playerInArea = this.player.scene.physics.overlap(this.player.sprite, this.player.scene.audioAreas, (left, right) => {
             const trigger = left === this.player.sprite ? right : left;
             if (trigger.name === 'generator-room') {
-                if (!this.player.scene.sounds.generatorNoise.isPlaying) {
+                if (this.generatorsOn && !this.player.scene.sounds.generatorNoise.isPlaying) {
                     this.player.scene.sounds.generatorNoise.play();
                 }
             }

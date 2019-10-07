@@ -242,6 +242,23 @@
                  "width":30.5,
                  "x":369,
                  "y":516.788350634371
+                }, 
+                {
+                 "height":44.3333333333333,
+                 "id":30,
+                 "name":"faulty-generator",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"faulty-generator"
+                        }],
+                 "rotation":0,
+                 "type":"speech-trigger",
+                 "visible":true,
+                 "width":49.6666666666666,
+                 "x":439,
+                 "y":461.288350634371
                 }],
          "offsetx":0,
          "offsety":-0.288350634371398,
@@ -472,10 +489,10 @@
          "y":0
         }],
  "nextlayerid":33,
- "nextobjectid":30,
+ "nextobjectid":31,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.2.4",
+ "tiledversion":"1.2.3",
  "tileheight":16,
  "tilesets":[
         {
