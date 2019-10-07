@@ -71,13 +71,15 @@ class StateMachine {
         if (confirmPressed) {
             this.player.scene.physics.overlap(this.player.sprite, this.player.scene.speechTriggers, (left, right) => {
                 const trigger = left === this.player.sprite ? right : left;
+                if (trigger.getData('sound') === 'drawer') {
+                    this.player.scene.sounds.drawerWardrobe.play({volume: 0.3});
+                }
                 dialog.show(trigger.getData('action'), trigger);
             });
             this.player.scene.physics.overlap(this.player.sprite, this.player.scene.levers, (left, right) => {
                 const trigger = left === this.player.sprite ? right : left;
                 levers[trigger.getData('action')](trigger);
             });
-            this.player.scene.sounds.lightSwitch.play();
         }
 
         const overlapWithDoorTrigger = this.player.scene.physics.overlap(this.player.sprite, this.player.scene.doorTriggers, (left, right) => {
