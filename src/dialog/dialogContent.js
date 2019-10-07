@@ -328,6 +328,7 @@ const content = {
 			stateMachine.player.scene.setLightmask('full-lights-pipe-broken');
 			stateMachine.player.scene.brokenPipesLayer.visible = true;
 			stateMachine.player.scene.critter.sprite.visible = true;
+			setTimeout(() => dialog.show('speech-oxygen-level-low-again-1'), 10000);
 		}
 	},
 	"speech-photograph-1": {
