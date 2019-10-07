@@ -67,7 +67,7 @@ const doors = {
     },
     "door-generatorroom": {
         open: false,
-        locked: false,
+        locked: true,
         tiles: [
             [37, 28],
             [38, 28]
