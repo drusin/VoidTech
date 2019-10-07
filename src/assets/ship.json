@@ -311,6 +311,11 @@
                          "name":"action",
                          "type":"string",
                          "value":"storage-drawer-003"
+                        }, 
+                        {
+                         "name":"sound",
+                         "type":"string",
+                         "value":"drawer"
                         }],
                  "rotation":0,
                  "type":"speech-trigger",
@@ -328,6 +333,11 @@
                          "name":"action",
                          "type":"string",
                          "value":"storage-drawer-002"
+                        }, 
+                        {
+                         "name":"sound",
+                         "type":"string",
+                         "value":"drawer"
                         }],
                  "rotation":0,
                  "type":"speech-trigger",
@@ -345,6 +355,11 @@
                          "name":"action",
                          "type":"string",
                          "value":"storage-drawer-001"
+                        }, 
+                        {
+                         "name":"sound",
+                         "type":"string",
+                         "value":"drawer"
                         }],
                  "rotation":0,
                  "type":"speech-trigger",
@@ -425,6 +440,17 @@
                  "height":30.1965859370185,
                  "id":35,
                  "name":"bedroom-drawer-002",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"bedroom-drawer-002"
+                        }, 
+                        {
+                         "name":"sound",
+                         "type":"string",
+                         "value":"drawer"
+                        }],
                  "rotation":0,
                  "type":"speech-trigger",
                  "visible":true,
@@ -458,6 +484,11 @@
                          "name":"action",
                          "type":"string",
                          "value":"hallway-drawer"
+                        }, 
+                        {
+                         "name":"sound",
+                         "type":"string",
+                         "value":"drawer"
                         }],
                  "rotation":0,
                  "type":"speech-trigger",
@@ -509,6 +540,11 @@
                          "name":"action",
                          "type":"string",
                          "value":"bridge-drawer-001"
+                        }, 
+                        {
+                         "name":"sound",
+                         "type":"string",
+                         "value":"drawer"
                         }],
                  "rotation":0,
                  "type":"speech-trigger",
@@ -526,6 +562,11 @@
                          "name":"action",
                          "type":"string",
                          "value":"bridge-drawer-002"
+                        }, 
+                        {
+                         "name":"sound",
+                         "type":"string",
+                         "value":"drawer"
                         }],
                  "rotation":0,
                  "type":"speech-trigger",
@@ -788,6 +829,40 @@
                  "width":38.2079250631663,
                  "x":200.283478153694,
                  "y":157.761755099525
+                }, 
+                {
+                 "height":37.5916682073088,
+                 "id":57,
+                 "name":"vhs-room-vhs-table",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"vhs-room-vhs-table"
+                        }],
+                 "rotation":0,
+                 "type":"speechj-trigger",
+                 "visible":true,
+                 "width":40.0566956307389,
+                 "x":387.009305478523,
+                 "y":340.790041289209
+                }, 
+                {
+                 "height":17.8714488198681,
+                 "id":58,
+                 "name":"vhs-room-vhs-terminal",
+                 "properties":[
+                        {
+                         "name":"action",
+                         "type":"string",
+                         "value":"vhs-room-vhs-terminal"
+                        }],
+                 "rotation":0,
+                 "type":"speech-trigger",
+                 "visible":true,
+                 "width":120.170086892217,
+                 "x":260.060393171874,
+                 "y":424.600973685832
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -937,10 +1012,10 @@
          "y":0
         }],
  "nextlayerid":34,
- "nextobjectid":57,
+ "nextobjectid":59,
  "orientation":"orthogonal",
  "renderorder":"right-down",
- "tiledversion":"1.2.3",
+ "tiledversion":"1.2.4",
  "tileheight":16,
  "tilesets":[
         {
