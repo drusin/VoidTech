@@ -28,6 +28,10 @@ class Dialog {
         while (this.buttons.firstChild) {
             this.buttons.firstChild.remove();
         }
+        if (!(key in dialogContent)) {
+            console.warn(`No dialog defined for key '${key}'…`);
+            return;
+        }
         stateMachine.setState(STATES.dialog);
         this.currentDialog = dialogContent[key];
         while (this.currentDialog.proxyFor) {
