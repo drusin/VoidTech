@@ -2,14 +2,15 @@ import { Scene } from 'phaser';
 
 import VoidTech from './assets/VoidTech.png'
 import GameScene from './GameScene';
+import Sfx from './sfx';
 
 const ButtonSize = { width: 100, height: 20 };
 
 export default class HomeScene extends Scene {
     constructor() {
         super({ key: HomeScene.KEY });
-        this.music = true;
-        this.sounds = true;
+        this.musicEnabled = true;
+        this.soundEnabled = true;
         this.selectedIndex = 0;
         this.menuChanged = true;
     }
@@ -19,7 +20,10 @@ export default class HomeScene extends Scene {
     }
 
     preload() {
-		this.load.image('void_tech', VoidTech);
+        this.load.image('void_tech', VoidTech);
+        
+        this.game.globals.sfx.preloadSounds(this.load);
+        this.game.globals.sfx.preloadMusic(this.load);
     }
 
     create() {
@@ -29,10 +33,12 @@ export default class HomeScene extends Scene {
         this.graphics = this.scene.scene.add.graphics();
 
         this.centeredText(0, "Start...");
-        this.soundsText = this.centeredText(1, "Sounds: " + (this.sounds ? "ON" : "OFF"));
-        this.musicText = this.centeredText(2, "Music: " + (this.music ? "ON" : "OFF"));
+        this.soundsText = this.centeredText(1, "Sounds: " + (this.soundEnabled ? "ON" : "OFF"));
+        this.musicText = this.centeredText(2, "Music: " + (this.musicEnabled ? "ON" : "OFF"));
 
         this.cursorkeys = this.scene.scene.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
+
+        this.game.globals.sfx.createMusic(this.sound);
     }
 
     update(time, delta) {
@@ -59,12 +65,14 @@ export default class HomeScene extends Scene {
                     this.scene.start(GameScene.KEY);
                 break;
                 case 1:
-                    this.sounds = !this.sounds;
-                    this.soundsText.setText("Sounds: " + (this.sounds ? "ON" : "OFF"));
+                    this.soundEnabled = !this.soundEnabled;
+                    this.soundsText.setText("Sounds: " + (this.soundEnabled ? "ON" : "OFF"));
+                    this.game.globals.sfx.setSoundEnabled(this.soundEnabled);
                     break;
                 case 2:
-                    this.music = !this.music;
-                    this.musicText.setText("Music: " + (this.music ? "ON" : "OFF"));
+                    this.musicEnabled = !this.musicEnabled;
+                    this.musicText.setText("Music: " + (this.musicEnabled ? "ON" : "OFF"));
+                    this.game.globals.sfx.setMusicEnabled(this.musicEnabled);
                     break;
             }
             action = false;

@@ -15,6 +15,7 @@ export { STATES };
 
 class StateMachine {
     init (player) {
+        this.game = player.scene.game;
         this.player = player;
         this.state = STATES.normal;
         this.generatorsOn = false;
@@ -39,29 +40,20 @@ class StateMachine {
             case STATES.cutScene:
                 // do nothing and wait till cutscene is over
         }
-        this.player.scene.music.makeSureCorrectMusicPlays();
     }
 
     updateAreaSounds() {
         const playerInArea = this.player.scene.physics.overlap(this.player.sprite, this.player.scene.audioAreas, (left, right) => {
             const trigger = left === this.player.sprite ? right : left;
             if (trigger.name === 'generator-room') {
-                if (!this.generatorsOn) {
-                    this.player.scene.sounds.generatorNoise.stop();
-                }
-                else if (this.generatorsOn && !this.player.scene.sounds.generatorNoise.isPlaying) {
-                    this.player.scene.sounds.generatorNoise.play();
-                }
+                this.game.globals.sfx.generatorRoom(this.generatorsOn);
             }
             else if (trigger.name === 'pipes-room') {
-                if (!this.player.scene.sounds.oxygen.isPlaying) {
-                    this.player.scene.sounds.oxygen.play();
-                }
+                this.game.globals.sfx.pipesRoom();
             }
         });
         if (!playerInArea) {
-            this.player.scene.sounds.generatorNoise.stop();
-            this.player.scene.sounds.oxygen.stop();
+            this.game.globals.sfx.quietArea();
         }
     }
 
@@ -72,7 +64,7 @@ class StateMachine {
             this.player.scene.physics.overlap(this.player.sprite, this.player.scene.speechTriggers, (left, right) => {
                 const trigger = left === this.player.sprite ? right : left;
                 if (trigger.getData('sound') === 'drawer') {
-                    this.player.scene.sounds.drawerWardrobe.play({volume: 0.3});
+                    this.game.globals.sfx.drawer();
                 }
                 dialog.show(trigger.getData('action'), trigger);
             });

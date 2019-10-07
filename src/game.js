@@ -1,6 +1,7 @@
 import Phaser from 'phaser';
 import GameScene from './GameScene';
 import HomeScene from './HomeScene';
+import Sfx from './sfx';
 
 const config = {
 	type: Phaser.AUTO,
@@ -24,5 +25,6 @@ const config = {
 };
 
 const GAME = new Phaser.Game(config);
+GAME.globals = { sfx: new Sfx() };
 
 export default GAME;

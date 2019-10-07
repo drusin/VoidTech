@@ -85,7 +85,7 @@ const doors = {
 }
 
 function playSoundEffect() {
-    stateMachine.player.scene.sounds.doorSwoosh1.play({volume: 0.1});
+    stateMachine.game.globals.sfx.doorSwoosh();
 }
 
 export function lockDoor(name, locked) {

@@ -14,20 +14,6 @@ import bigAssets from './assets/Big-assets.png'
 import smallAssets from './assets/Small-assets.png'
 import AnimatedTiles from 'phaser-animated-tiles/dist/AnimatedTiles.min.js';
 
-import lightSwitchSound from './assets/sounds/Okt. 06, 830873-light-switch.ogg';
-import lightSwitchSoundAlternative from './assets/sounds/Okt. 06, 830873-light-switch-alternative.ogg';
-import walkingWood1 from './assets/sounds/Okt. 06, 508575-steps-wood.ogg';
-import walkingWood2 from './assets/sounds/Okt. 06, 022498-walking-wood.ogg';
-import walkingWood3 from './assets/sounds/Okt. 06, 969136-walking-wood-alternative.ogg';
-import walkingMetal1 from './assets/sounds/Okt. 06, 469754-walking-metal.ogg';
-import doorSwoosh from './assets/sounds/Okt. 06, 259500-door-shush.ogg';
-import oxygen from './assets/sounds/Okt. 06, 581718-oxigen.ogg';
-import generatorNoise1 from './assets/sounds/Okt. 07, 830680-generator-noise.ogg';
-import generatorNoise2 from './assets/sounds/Okt. 07, 128891-generator-noise-alternative.ogg';
-import drawerWardrobe1 from './assets/sounds/Okt. 06, 578141-drawer-wardrobe.ogg';
-import putOnSpaceSuitNoise from './assets/sounds/Okt. 07, 690746-put-on-space-suit.ogg';
-import heavyBreathing from './assets/sounds/Okt. 07, 755535-breathing.ogg';
-
 import { PLAYER_TILESET_KEY } from './entities/player.js';
 import { CRITTER_KEY } from './entities/critter.js';
 import Player from './entities/player.js';
@@ -45,15 +31,12 @@ import lightmap_all_emergency from './assets/Lights/all-emergency.png';
 import lightmap_full_lights_no_pipe from './assets/Lights/full-lights-pipe-broken.png';
 import lightmap_full_lights from './assets/Lights/full-lights.png';
 
-import Music from './music.js';
 import { runInThisContext } from 'vm';
 
 export default class GameScene extends Scene {
 	constructor() {
 		super({ key: GameScene.KEY });
 		this.playerCollider = null;
-		this.sounds = {};
-		this.music = new Music(this);
 	}
 	
 	static get KEY() {
@@ -109,20 +92,7 @@ export default class GameScene extends Scene {
 
 		this.load.image('dave-lying', daveLying);
 
-		this.load.audio('light-switch-1', lightSwitchSound);
-		this.load.audio('light-switch-2', lightSwitchSoundAlternative);
-		this.load.audio('walking-wood-1', walkingWood1);
-		this.load.audio('walking-wood-2', walkingWood2);
-		this.load.audio('walking-wood-3', walkingWood3);
-		this.load.audio('walking-metal-1', walkingMetal1);
-		this.load.audio('door-swoosh-1', doorSwoosh);
-		this.load.audio('oxygen', oxygen);
-		this.load.audio('generator-noise-1', generatorNoise1);
-		this.load.audio('generator-noise-2', generatorNoise2);
-		this.load.audio('drawer-wardrobe-1', drawerWardrobe1);
-		this.load.audio('put-on-space-suit-noise-1', putOnSpaceSuitNoise);
-		this.load.audio('heavy-breathing-1', heavyBreathing);
-		this.music.load();
+        this.game.globals.sfx.createSounds(this.sound);
 	}
 
 	initializeObjects(tilemap) {
@@ -252,21 +222,6 @@ export default class GameScene extends Scene {
 		dialog.init(this.Dialog, this, this.player);
 		stateMachine.init(this.player);
 		this.cameras.main.startFollow(this.player.sprite);
-
-		this.sounds.lightSwitch = this.sound.add('light-switch-1');
-		this.sounds.lightSwitchAlternative = this.sound.add('light-switch-2');
-		this.sounds.walkingWood1 = this.sound.add('walking-wood-1');
-		this.sounds.walkingWood2 = this.sound.add('walking-wood-2');
-		this.sounds.walkingWood3 = this.sound.add('walking-wood-3');
-		this.sounds.walkingMetal1 = this.sound.add('walking-metal-1');
-		this.sounds.doorSwoosh1 = this.sound.add('door-swoosh-1');
-		this.sounds.oxygen = this.sound.add('oxygen');
-		this.sounds.generatorNoise = this.sound.add('generator-noise-2');
-		this.sounds.drawerWardrobe = this.sound.add('drawer-wardrobe-1');
-		this.sounds.putOnSpaceSuitNoise = this.sound.add('put-on-space-suit-noise-1');
-		this.sounds.heavyBreathing = this.sound.add('heavy-breathing-1');
-
-		this.music.init();
 		
 		this.setLightmask('bedroom-dark');
 

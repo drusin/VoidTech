@@ -154,7 +154,7 @@ const content = {
 	"speech-fixed-leak": {
 		"text": "Thanks Dave. Now we need to get the generators up and running.<br>Please follow the emergency lights to the generator room.",
 		"action": () => {
-			stateMachine.player.scene.music.setTrack2();
+			stateMachine.player.game.globals.sfx.setTrack(2);
 			stateMachine.player.scene.emergencyLightsGeneratorLayer.visible = true;
 			lockDoor('door-bedroom', false);
 			lockDoor('door-004', false);
@@ -322,7 +322,7 @@ const content = {
 		"speaker": "lisa",
 		"text": "The generators appear to be working in an orderly fashion",
 		"action": () => {
-			stateMachine.player.scene.music.setTrack3();
+			stateMachine.player.game.globals.sfx.setTrack(3);
 			stateMachine.player.scene.emergencyLightsBedroomLayer.visible = false;
 			stateMachine.player.scene.emergencyLightsGeneratorLayer.visible = false;
 			stateMachine.player.scene.setLightmask('full-lights-pipe-broken');
@@ -412,7 +412,7 @@ const content = {
 					stateMachine.state = STATES.cutScene;
 					
 					stateMachine.player.sprite.anims.play('putOnSpaceSuit', true);
-					stateMachine.player.scene.sounds.putOnSpaceSuitNoise.play();
+					stateMachine.game.globals.sfx.putOnSpaceSuit();
 					stateMachine.player.sprite.on('animationcomplete', function (animation) {
 						if (animation.key === 'putOnSpaceSuit') {
 							stateMachine.state = STATES.normal;
@@ -422,7 +422,6 @@ const content = {
 					stateMachine.player.wearsSpaceSuit = true;
 					content["space-suit-drawer"].proxyFor = "space-suit-drawer-empty";
 					lockDoor("door-bridge", false);
-					stateMachine.player.scene.music.setToSpaceSuitMode();
 				}
 			},
 			{
@@ -440,7 +439,7 @@ const content = {
 					stateMachine.state = STATES.cutScene;
 					
 					stateMachine.player.sprite.anims.playReverse('putOnSpaceSuit', true);
-					stateMachine.player.scene.sounds.putOnSpaceSuitNoise.play();
+					stateMachine.game.globals.sfx.takeOffSpaceSuit();
 					stateMachine.player.sprite.on('animationcomplete', function (animation) {
 						if (animation.key === 'putOnSpaceSuit') {
 							stateMachine.state = STATES.normal;
@@ -450,7 +449,6 @@ const content = {
 					stateMachine.player.wearsSpaceSuit = false;
 					content["space-suit-drawer"].proxyFor = null;
 					lockDoor("door-bridge", true);
-					stateMachine.player.scene.music.setToNormalMode();
 				}
 			},
 			{

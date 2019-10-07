@@ -9,6 +9,7 @@ export default class Player {
         this.cursorkeys = scene.input.keyboard.addKeys("W,A,S,D,LEFT,UP,RIGHT,DOWN,SPACE,ENTER");
         this.dialogs = scene.Dialog;
         this.scene = scene;
+        this.game = scene.game;
         this.wearsSpaceSuit = false;
     }
 
@@ -68,44 +69,16 @@ export default class Player {
     }
 
     _updateWalkingSound() {
-        const walkingOnWoodSound = this.scene.sounds.walkingWood2;
-        const walkingOnMetalSound = this.scene.sounds.walkingMetal1;
-
         const walkingRate = this.wearsSpaceSuit ? 1.0 * (constants.spaceSuiteMovementMultiplier + 0.2) : 1.0;
 
         const tileStandingOn = this.scene.walkableLayer.getTileAtWorldXY(this.sprite.x, this.sprite.y);
         const currentFloorType = tileStandingOn.properties['floorType'];
 
         if (!this._isMoving(this.sprite.body.velocity)) {
-            walkingOnWoodSound.stop();
-            walkingOnMetalSound.stop();
+            this.game.globals.sfx.notMoving();
         }
         else {
-            if (currentFloorType === 'metal') {
-                if (walkingOnWoodSound.isPlaying) {
-                    walkingOnWoodSound.stop();
-                }
-                if (!walkingOnMetalSound.isPlaying) {
-                    walkingOnMetalSound.play({loop: false, rate: walkingRate});
-                }
-            }
-            else {
-                if (walkingOnMetalSound.isPlaying) {
-                    walkingOnMetalSound.stop();
-                }
-                if (!walkingOnWoodSound.isPlaying) {
-                    walkingOnWoodSound.play({loop: false, rate: walkingRate});
-                }
-            }
-        }
-        const breathingSound = this.scene.sounds.heavyBreathing;
-        if (this.wearsSpaceSuit) {
-            if (!breathingSound.isPlaying) {
-                breathingSound.play({loop: false});
-            }
-        }
-        else {
-            breathingSound.stop();
+            this.game.globals.sfx.walking(currentFloorType, walkingRate, this.wearsSpaceSuit);
         }
     }
 
