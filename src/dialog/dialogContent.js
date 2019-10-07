@@ -213,7 +213,6 @@ const content = {
 		"text": "Running stress tests...",
 		"action": () => {
 			stateMachine.player.scene.generatorBrokenLayer.visible = true;
-			stateMachine.generatorsOn = false;
 			dialog.show('powering-on-generators-003');
 		}
 	},
@@ -222,6 +221,7 @@ const content = {
 		"text": "Critical error, shutting down generators.",
 		"action": () => {
 			stateMachine.player.scene.generatorsOffLayer.visible = true;
+			stateMachine.generatorsOn = false;
 			dialog.show('speech-fix-generators-1')
 		}
 	},
@@ -265,7 +265,6 @@ const content = {
 		"text": "Running stress tests...",
 		"action": () => {
 			stateMachine.player.scene.generatorBrokenLayer.visible = true;
-			stateMachine.generatorsOn = false;
 			dialog.show('generator-console-circuit-wrong-004');
 		}
 	},
@@ -274,6 +273,7 @@ const content = {
 		"text": "Critical error, shutting down generators.",
 		"action": () => {
 			stateMachine.player.scene.generatorsOffLayer.visible = true;
+			stateMachine.generatorsOn = false;
 			dialog.show('generator-console-circuit-wrong-005')
 		}
 	},
@@ -300,7 +300,6 @@ const content = {
 		"text": "Running stress tests...",
 		"action": () => {
 			stateMachine.player.scene.generatorBrokenLayer.visible = true;
-			stateMachine.generatorsOn = false;
 			dialog.show('generator-console-circuit-correct-004');
 		}
 	},
