@@ -368,20 +368,42 @@ const content = {
 
 	"critter-001": {
 		"text": "I am no touching this with a 10 foot pole...",
-		"speaker": "dave"
+		"speaker": "dave",
+		"action": () => dialog.show('critter-002')
+	},
+	"critter-002": {
+		"text": "What's the matter, Dave?<br>You still did not fix the leak.",
+		"speaker": "lisa",
+		"action": () => dialog.show('critter-003')
+	},
+	"critter-003": {
+		"text": "There is... SOMETHING in there.<br>With sharp teeth and hunger for pipes.",
+		"speaker": "dave",
+		"action": () => dialog.show('speech-oxygen-level-low-again-7')
 	},
 	"speech-oxygen-level-low-again-6": {	
 		"text": "I do want to survive. And who knows maybe I’m not alone here…",
 		"speaker": "dave"
 		},
 	"speech-oxygen-level-low-again-7": {	
-		"text": "That’s the spirit! I think a power surge in the oxygen control room could chase away the creatures. The power surge can be triggered in the zero oxygen room.",
-		"speaker": "lisa"
+		"text": "I think a power surge in the oxygen control room could chase away the creature.<br> The power surge can be triggered on the bridge.",
+		"speaker": "lisa",
+		"action": () => setTimeout(() => dialog.show('critter-004'), 3000)
 		},
 	"speech-zero-oxygen-room-1": {	
 		"text": "There’s a door that I haven’t entered. I’d like to see what I can find there.",
 		"speaker": "dave"
-		},
+	},
+	"critter-004": {
+		"text": "Where... where is the bridge?",
+		"speaker": "dave",
+		"action": () => dialog.show('critter-005')
+	},
+	"critter-005": {
+		"text": "Behind the door at the end of the long corridor.<br>Because of ongoing repairs, there is no oxygen in that room.<br>There should be a space suit somewehere in the storage room.<br>You probably passed it on your way to the generator room.",
+		"speaker": "lisa",
+		// "action": () => dialog.show('critter-005')
+	},
 	"speech-zero-oxygen-room-2": {	
 		"text": "Dave, you weren’t supposed to go in there. Your job here is done, you may go back to sleep.",
 		"speaker": "lisa"
