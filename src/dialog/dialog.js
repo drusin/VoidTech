@@ -21,14 +21,16 @@ class Dialog {
         this.buttons = document.getElementById('buttons');
         this.speaker = document.getElementById('speaker');
         this.currentDialog = undefined;
+        this.trigger = undefined;
     }
 
-    show(key) {
+    show(key, trigger) {
         while (this.buttons.firstChild) {
             this.buttons.firstChild.remove();
         }
         stateMachine.setState(STATES.dialog);
         this.currentDialog = dialogContent[key];
+        this.trigger = trigger;
         this.dialogText.innerHTML = this.currentDialog.text;
         this.dialogContainer.style.display = 'block';
         if (this.menu) {
@@ -67,12 +69,15 @@ class Dialog {
     }
 
     hide() {
+        const todo = this.currentDialog.action;
+        const trigger = this.trigger;
         this.dialogContainer.style.display = 'none';
-        if (this.currentDialog.action) {
-            this.currentDialog.action();
-        }
         this.currentDialog = undefined;
+        this.trigger = undefined;
         this.speaker.innerHTML = '';
+        if (todo) {
+            todo(trigger);
+        }
     }
 
     get active() {

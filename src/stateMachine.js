@@ -59,7 +59,7 @@ class StateMachine {
         if (Phaser.Input.Keyboard.JustDown(space)) {
             this.player.scene.physics.overlap(this.player.sprite, this.player.scene.speechTriggers, (left, right) => {
                 const trigger = left === this.player.sprite ? right : left;
-                dialog.show(trigger.getData('action'));
+                dialog.show(trigger.getData('action'), trigger);
             });
             this.player.scene.physics.overlap(this.player.sprite, this.player.scene.levers, (left, right) => {
                 const trigger = left === this.player.sprite ? right : left;
@@ -121,8 +121,8 @@ class StateMachine {
         }
         else {
             if (Phaser.Input.Keyboard.JustDown(space)) {
-                dialog.hide();
                 this.setState(STATES.normal);
+                dialog.hide();
             }
         }
     }

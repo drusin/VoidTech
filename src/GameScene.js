@@ -147,6 +147,9 @@ export default class GameScene extends Scene {
 		this.animatedLayer.setCollisionBetween(1, 999);
 		this.lampLayer = map.createDynamicLayer('lamps', lightsTileset, 0, 0);
 
+		this.emergencyLightsBedroomLayer = map.createDynamicLayer('emergency-lights-bedroom', lightsTileset, 0, 0);
+		this.emergencyLightsBedroomLayer.visible = false;
+
         this.sys.animatedTiles.init(map);
 
 		this.player = new Player(this);

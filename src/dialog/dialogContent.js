@@ -36,18 +36,41 @@ export default {
         "text": "Where am I? I don’t remember anything…<br>Hello? Anybody there?<br>Maybe the computer can give me some answers.",
         "speaker": "dave"
     },
+    "pc-bedroom": {
+        "text": "OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!<br>OXYGEN LEVEL LOW!",
+        "speaker": "lisa",
+        "action": (trigger) => {
+            trigger.setData('action', 'pc-bedroom2');
+            dialog.show('speech-oxygen-level-low-1');
+        }
+    },
 	"speech-oxygen-level-low-1": {
 		"text": "Shit. What’s happening here?",
-		"speaker": "dave"
+        "speaker": "dave",
+        "action": () => dialog.show('speech-oxygen-level-low-2')
 		},
 	"speech-oxygen-level-low-2": {
-		"text": "Hello Dave. Welcome to Lisa’s Landing. You’ve been chosen to help us survive. As you can see, the oxygen levels are getting too low. Please go to the oxygen control room and fix the problem.",
-		"speaker": "lisa"
-		},
+		"text": "Hello Dave. Welcome to Lisa’s Landing. You’ve been chosen to help us survive.<br>As you can see, the oxygen levels are getting too low.<br>Please go to the oxygen control room and fix the problem.",
+        "speaker": "lisa",
+        "buttons": [
+            {
+                "text": "Turn on emergency lights",
+                "action": () => {
+                    stateMachine.player.scene.emergencyLightsBedroomLayer.visible = true;
+                    dialog.show('speech-oxygen-level-low-3');
+                }
+            },
+        ]
+    },
 	"speech-oxygen-level-low-3": {
-		"text": "How does the voice know who I am? I guess I should keep following the emergency lights to the oxygen control room.",
+		"text": "How does the voice know who I am?<br>I guess I should keep following the emergency lights to the oxygen control room.",
 		"speaker": "dave"
-	},
+    },
+    "pc-bedroom2": {
+        "text": "Dave, fix the oxygen levels. Please.",
+        "speaker": "lisa",
+        "action": () => dialog.show('speech-oxygen-level-low-3')
+    },
 	"speech-fix-leak-1": {
 		"text": "One of the pipes seems to have a leak. I need to find something to cover the hole.",
 		"speaker": "dave"
