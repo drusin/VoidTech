@@ -616,8 +616,35 @@ const content = {
 		"speaker": "dave"
 	},
 	"bridge-console-011": {
-		"text": "Not really interesting.",
-		"speaker": "dave"
+		"proxyFor": "surge-001"
+	},
+	"surge-001": {
+		"speaker": "lisa",
+		"text": "Initiate power surge in the oxygen room?",
+		"buttons": [
+			{
+				"text": "Yes",
+				"action": () => dialog.show('surge-002')
+			},
+			{
+				"text": "No"
+			}
+		]
+	},
+	"surge-002": {
+		"speaker": "lisa",
+		"text": "Preparing energy spike...",
+		"action": () => dialog.show('surge-003')
+	},
+	"surge-003": {
+		"speaker": "lisa",
+		"text": "Power surge procedure was successfull",
+		"action": () => {
+			stateMachine.player.scene.setLightmask('full-lights');
+			stateMachine.player.scene.brokenPipesLayer.visible = false;
+			stateMachine.player.scene.critter.sprite.visible = false;
+			stateMachine.player.scene.critterCollider.active = false;
+		}
 	},
 	"vhs-room-vhs-terminal": {
 		"text": "Just a VHS terminal. No tape is entered."
