@@ -254,8 +254,15 @@ const content = {
 			{
                 "text": "Put it out",
                 "action": () => {
-					console.log('ausziehanimation');
-					// playReverse()
+					stateMachine.state = STATES.cutScene;
+					
+					stateMachine.player.sprite.anims.playReverse('putOnSpaceSuit', true);
+					stateMachine.player.sprite.on('animationcomplete', function (animation) {
+						if (animation.key === 'putOnSpaceSuit') {
+							stateMachine.state = STATES.normal;
+						}
+					});
+
 					stateMachine.player.wearsSpaceSuit = false;
 					content["space-suit-drawer"].proxyFor = null;
 					lockDoor("door-generatorroom", true);
