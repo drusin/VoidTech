@@ -640,12 +640,32 @@ const content = {
 		"speaker": "lisa",
 		"text": "Power surge procedure was successfull",
 		"action": () => {
-			stateMachine.player.scene.setLightmask('full-lights');
-			stateMachine.player.scene.brokenPipesLayer.visible = false;
+			
 			stateMachine.player.scene.critter.sprite.visible = false;
 			stateMachine.player.scene.critterCollider.active = false;
-			content['vhs-room-vhs-table'].proxyFor = 'vhs-room-in-the-end';
+			
+			content['repair-leak-ducttape'].proxyFor = 'fix-oxygen-final';
+			dialog.show('surge-004');
 		}
+	},
+	"surge-004": {
+		"speaker": "lisa",
+		"text": "The critter is gone. You still need to fix the tube, Dave.",
+	},
+	"fix-oxygen-final": {
+		"speaker": "dave",
+		"text": "This should really do it",
+		"action": () => {
+			stateMachine.player.scene.setLightmask('full-lights');
+			stateMachine.player.scene.brokenPipesLayer.visible = false;
+			content['vhs-room-vhs-table'].proxyFor = 'vhs-room-in-the-end';
+			setTimeout(() => dialog.show('thank-you-dave'), 2000);
+		}
+	},
+	"thank-you-dave": {
+		"speaker": "lisa",
+		"text": "Thank you, Dave. You can now go back to sleep.",
+		"action": () => content['bedroom-bed'].proxyFor = 'bedroom-bed-001'
 	},
 	"vhs-room-vhs-terminal": {
 		"text": "Just a VHS terminal. No tape is entered."
@@ -686,6 +706,14 @@ const content = {
 	"storage-room-table": {
 		"text": "Absolutely nothing on the table.",
 		"speaker": "dave"
+	},
+	"bedroom-bed": {
+		"speaker": "dave",
+		"text": "I've got stuff to do"
+	},
+	"bedroom-bed-001": {
+		"speaker": "dave",
+		"text": "Good night..."
 	}
 }
 
