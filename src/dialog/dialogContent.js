@@ -1,6 +1,7 @@
 import dialog from './dialog.js';
 import stateMachine, { STATES } from '../stateMachine';
 import { lockDoor } from '../doors.js';
+import CreditsScene from '../CreditsScene.js';
 
 const content = {
     "speech-001": {
