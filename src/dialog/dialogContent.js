@@ -140,6 +140,7 @@ const content = {
 	"speech-fixed-leak": {
 		"text": "Thanks Dave. Now we need to get the generators up and running.<br>Please follow the emergency lights to the generator room.",
 		"action": () => {
+			stateMachine.player.scene.music.setTrack2();
 			stateMachine.player.scene.emergencyLightsGeneratorLayer.visible = true;
 			lockDoor('door-bedroom', false);
 			lockDoor('door-004', false);
@@ -306,7 +307,10 @@ const content = {
 	"generator-console-circuit-correct-004": {
 		"speaker": "lisa",
 		"text": "The generators appear to be working in an orderly fashion",
-		"action": () => alert('turn on the light now')
+		"action": () => {
+			stateMachine.player.scene.music.setTrack3();
+			alert('turn on the light now')
+		}
 	},
 	"speech-photograph-1": {
 		"text": "I wonder who they are… They look so happy. Did they used to work here?",
@@ -425,22 +429,13 @@ const content = {
         ]
 	},
 	"storage-drawer-001": {
-		"text": "TODO: nothing of interest1",
-		"action": () => {
-			stateMachine.player.scene.music.setTrack1();
-		}
+		"text": "TODO: nothing of interest1"
 	},
 	"storage-drawer-002": {
-		"text": "TODO: nothing of interest2",
-		"action": () => {
-			stateMachine.player.scene.music.setTrack2();
-		}
+		"text": "TODO: nothing of interest2"
 	},
 	"storage-drawer-003": {
-		"text": "TODO: nothing of interest3",
-		"action": () => {
-			stateMachine.player.scene.music.setTrack3();
-		}
+		"text": "TODO: nothing of interest3"
 	}
 }
 
