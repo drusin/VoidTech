@@ -1,3 +1,5 @@
+This repository is archived (readonly) to be a snapshot of the actual Ludum Dare 45 contribution. You can find the active version of it here: https://github.com/drusin/ViodTech_plus
+
 # VoidTech
 This was an entry for Ludum Dare 45.
 
